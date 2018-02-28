@@ -10,6 +10,7 @@ import UIKit
 
 class LaunchViewController: UIViewController {
 
+    @IBOutlet weak var playSummaryView: PlaySummaryView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

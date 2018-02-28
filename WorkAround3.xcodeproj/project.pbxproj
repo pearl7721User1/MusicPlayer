@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEC09032204628C10022E5AD /* PlaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC09031204628C10022E5AD /* PlaySummaryView.swift */; };
+		BEC0903420462DCB0022E5AD /* PlaySummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC0903320462DCB0022E5AD /* PlaySummaryView.xib */; };
 		EE4E07201F4EF8B8009FC635 /* FlickerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071C1F4EF8B8009FC635 /* FlickerButtonView.swift */; };
 		EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */; };
 		EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BEC09031204628C10022E5AD /* PlaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySummaryView.swift; sourceTree = "<group>"; };
+		BEC0903320462DCB0022E5AD /* PlaySummaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySummaryView.xib; sourceTree = "<group>"; };
 		EE4E071C1F4EF8B8009FC635 /* FlickerButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerButtonView.swift; sourceTree = "<group>"; };
 		EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPausedView.swift; sourceTree = "<group>"; };
 		EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPlayedView.swift; sourceTree = "<group>"; };
@@ -53,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BEC090302046282B0022E5AD /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				BEC09031204628C10022E5AD /* PlaySummaryView.swift */,
+				BEC0903320462DCB0022E5AD /* PlaySummaryView.xib */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
 		EE4E07241F4EF8C0009FC635 /* PlayButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +122,7 @@
 		EEC822ED1F49A365007E3D6C /* WorkAround3 */ = {
 			isa = PBXGroup;
 			children = (
+				BEC090302046282B0022E5AD /* CustomViews */,
 				EE9267B5204592E9009DB5B4 /* WireFrame */,
 				EE632662203DA73C00347FB8 /* ViewControllers */,
 				EE63265F203DA2ED00347FB8 /* Model */,
@@ -186,6 +200,7 @@
 				EEC822F91F49A365007E3D6C /* LaunchScreen.storyboard in Resources */,
 				EEC822F61F49A365007E3D6C /* Assets.xcassets in Resources */,
 				EEC822F41F49A365007E3D6C /* Main.storyboard in Resources */,
+				BEC0903420462DCB0022E5AD /* PlaySummaryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +222,7 @@
 				EE4E07201F4EF8B8009FC635 /* FlickerButtonView.swift in Sources */,
 				EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */,
 				EE4E07261F4EF90E009FC635 /* AudioPlayViewController.swift in Sources */,
+				BEC09032204628C10022E5AD /* PlaySummaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

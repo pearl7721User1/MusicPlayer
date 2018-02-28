@@ -47,6 +47,7 @@ class MainWireFrame {
         mainTabBarController.view.topAnchor.constraint(equalTo: launchViewController.view.topAnchor).isActive = true
         mainTabBarController.view.bottomAnchor.constraint(equalTo: launchViewController.view.bottomAnchor).isActive = true
         
-        
+        // set launchViewController's view hierarchy
+        launchViewController.view.bringSubview(toFront: launchViewController.playSummaryView)
     }
 }
