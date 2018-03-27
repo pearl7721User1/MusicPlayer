@@ -7,39 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BEC09032204628C10022E5AD /* PlaySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC09031204628C10022E5AD /* PlaySummaryView.swift */; };
-		BEC0903420462DCB0022E5AD /* PlaySummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC0903320462DCB0022E5AD /* PlaySummaryView.xib */; };
+		BEC09032204628C10022E5AD /* MiniPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC09031204628C10022E5AD /* MiniPlayView.swift */; };
+		BEC0903420462DCB0022E5AD /* MiniPlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC0903320462DCB0022E5AD /* MiniPlayView.xib */; };
 		EE4E07201F4EF8B8009FC635 /* FlickerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071C1F4EF8B8009FC635 /* FlickerButtonView.swift */; };
 		EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */; };
 		EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */; };
 		EE4E07231F4EF8B8009FC635 /* GiwonPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071F1F4EF8B8009FC635 /* GiwonPlayButton.swift */; };
 		EE4E07261F4EF90E009FC635 /* AudioPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E07251F4EF90E009FC635 /* AudioPlayViewController.swift */; };
+		EE529C0C20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE529C0B20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift */; };
+		EE529C0E20693270001B9EE9 /* IMG_3622.JPG in Resources */ = {isa = PBXBuildFile; fileRef = EE529C0D20693270001B9EE9 /* IMG_3622.JPG */; };
 		EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE632660203DA31400347FB8 /* MyPlayItem.swift */; };
 		EE632664203DA7E500347FB8 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */; };
 		EE63266A2040522500347FB8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6326692040522500347FB8 /* LaunchViewController.swift */; };
+		EE8CF7A1205E158300EA9729 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8CF7A0205E158300EA9729 /* DimmingPresentationController.swift */; };
+		EE8CF7A4205E1AA100EA9729 /* MainWireFramePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8CF7A3205E1AA100EA9729 /* MainWireFramePresenter.swift */; };
 		EE9267B72045931D009DB5B4 /* MainWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9267B62045931D009DB5B4 /* MainWireFrame.swift */; };
+		EE9267B92046DEA6009DB5B4 /* AudioPlayWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9267B82046DEA6009DB5B4 /* AudioPlayWireFrame.swift */; };
+		EE9267BB2046E1E0009DB5B4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9267BA2046E1E0009DB5B4 /* MainTabBarController.swift */; };
+		EE9267BD2046E468009DB5B4 /* EmptyWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9267BC2046E468009DB5B4 /* EmptyWireFrame.swift */; };
 		EEC822EF1F49A365007E3D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC822EE1F49A365007E3D6C /* AppDelegate.swift */; };
-		EEC822F11F49A365007E3D6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC822F01F49A365007E3D6C /* ViewController.swift */; };
+		EEC822F11F49A365007E3D6C /* AudioListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC822F01F49A365007E3D6C /* AudioListViewController.swift */; };
 		EEC822F41F49A365007E3D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC822F21F49A365007E3D6C /* Main.storyboard */; };
 		EEC822F61F49A365007E3D6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEC822F51F49A365007E3D6C /* Assets.xcassets */; };
 		EEC822F91F49A365007E3D6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC822F71F49A365007E3D6C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BEC09031204628C10022E5AD /* PlaySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySummaryView.swift; sourceTree = "<group>"; };
-		BEC0903320462DCB0022E5AD /* PlaySummaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySummaryView.xib; sourceTree = "<group>"; };
+		BEC09031204628C10022E5AD /* MiniPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayView.swift; sourceTree = "<group>"; };
+		BEC0903320462DCB0022E5AD /* MiniPlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniPlayView.xib; sourceTree = "<group>"; };
 		EE4E071C1F4EF8B8009FC635 /* FlickerButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerButtonView.swift; sourceTree = "<group>"; };
 		EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPausedView.swift; sourceTree = "<group>"; };
 		EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPlayedView.swift; sourceTree = "<group>"; };
 		EE4E071F1F4EF8B8009FC635 /* GiwonPlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiwonPlayButton.swift; sourceTree = "<group>"; };
 		EE4E07251F4EF90E009FC635 /* AudioPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayViewController.swift; sourceTree = "<group>"; };
+		EE529C0B20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayPopupAnimationController.swift; sourceTree = "<group>"; };
+		EE529C0D20693270001B9EE9 /* IMG_3622.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_3622.JPG; sourceTree = "<group>"; };
 		EE632660203DA31400347FB8 /* MyPlayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlayItem.swift; sourceTree = "<group>"; };
 		EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		EE6326692040522500347FB8 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		EE8CF7A0205E158300EA9729 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
+		EE8CF7A3205E1AA100EA9729 /* MainWireFramePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWireFramePresenter.swift; sourceTree = "<group>"; };
 		EE9267B62045931D009DB5B4 /* MainWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWireFrame.swift; sourceTree = "<group>"; };
+		EE9267B82046DEA6009DB5B4 /* AudioPlayWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayWireFrame.swift; sourceTree = "<group>"; };
+		EE9267BA2046E1E0009DB5B4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		EE9267BC2046E468009DB5B4 /* EmptyWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWireFrame.swift; sourceTree = "<group>"; };
 		EEC822EB1F49A365007E3D6C /* WorkAround3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkAround3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEC822EE1F49A365007E3D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EEC822F01F49A365007E3D6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EEC822F01F49A365007E3D6C /* AudioListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioListViewController.swift; sourceTree = "<group>"; };
 		EEC822F31F49A365007E3D6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EEC822F51F49A365007E3D6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEC822F81F49A365007E3D6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,8 +74,8 @@
 		BEC090302046282B0022E5AD /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				BEC09031204628C10022E5AD /* PlaySummaryView.swift */,
-				BEC0903320462DCB0022E5AD /* PlaySummaryView.xib */,
+				BEC09031204628C10022E5AD /* MiniPlayView.swift */,
+				BEC0903320462DCB0022E5AD /* MiniPlayView.xib */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -78,6 +92,15 @@
 			name = PlayButton;
 			sourceTree = "<group>";
 		};
+		EE529C0A20692B78001B9EE9 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				EE8CF7A0205E158300EA9729 /* DimmingPresentationController.swift */,
+				EE529C0B20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift */,
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
 		EE63265F203DA2ED00347FB8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,14 +114,26 @@
 			children = (
 				EE6326692040522500347FB8 /* LaunchViewController.swift */,
 				EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */,
+				EEC822F01F49A365007E3D6C /* AudioListViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EE8CF7A2205E1A8300EA9729 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				EE8CF7A3205E1AA100EA9729 /* MainWireFramePresenter.swift */,
+			);
+			name = Presenter;
 			sourceTree = "<group>";
 		};
 		EE9267B5204592E9009DB5B4 /* WireFrame */ = {
 			isa = PBXGroup;
 			children = (
 				EE9267B62045931D009DB5B4 /* MainWireFrame.swift */,
+				EE9267BA2046E1E0009DB5B4 /* MainTabBarController.swift */,
+				EE9267B82046DEA6009DB5B4 /* AudioPlayWireFrame.swift */,
+				EE9267BC2046E468009DB5B4 /* EmptyWireFrame.swift */,
 			);
 			name = WireFrame;
 			sourceTree = "<group>";
@@ -122,13 +157,15 @@
 		EEC822ED1F49A365007E3D6C /* WorkAround3 */ = {
 			isa = PBXGroup;
 			children = (
+				EE529C0D20693270001B9EE9 /* IMG_3622.JPG */,
+				EE529C0A20692B78001B9EE9 /* Animators */,
+				EE8CF7A2205E1A8300EA9729 /* Presenter */,
 				BEC090302046282B0022E5AD /* CustomViews */,
 				EE9267B5204592E9009DB5B4 /* WireFrame */,
 				EE632662203DA73C00347FB8 /* ViewControllers */,
 				EE63265F203DA2ED00347FB8 /* Model */,
 				EE4E07241F4EF8C0009FC635 /* PlayButton */,
 				EEC822EE1F49A365007E3D6C /* AppDelegate.swift */,
-				EEC822F01F49A365007E3D6C /* ViewController.swift */,
 				EEC822F21F49A365007E3D6C /* Main.storyboard */,
 				EEC822F51F49A365007E3D6C /* Assets.xcassets */,
 				EEC822F71F49A365007E3D6C /* LaunchScreen.storyboard */,
@@ -199,8 +236,9 @@
 			files = (
 				EEC822F91F49A365007E3D6C /* LaunchScreen.storyboard in Resources */,
 				EEC822F61F49A365007E3D6C /* Assets.xcassets in Resources */,
+				EE529C0E20693270001B9EE9 /* IMG_3622.JPG in Resources */,
 				EEC822F41F49A365007E3D6C /* Main.storyboard in Resources */,
-				BEC0903420462DCB0022E5AD /* PlaySummaryView.xib in Resources */,
+				BEC0903420462DCB0022E5AD /* MiniPlayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,17 +250,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE4E07231F4EF8B8009FC635 /* GiwonPlayButton.swift in Sources */,
+				EE9267B92046DEA6009DB5B4 /* AudioPlayWireFrame.swift in Sources */,
 				EE63266A2040522500347FB8 /* LaunchViewController.swift in Sources */,
 				EE632664203DA7E500347FB8 /* AudioPlayerViewController.swift in Sources */,
 				EE9267B72045931D009DB5B4 /* MainWireFrame.swift in Sources */,
-				EEC822F11F49A365007E3D6C /* ViewController.swift in Sources */,
+				EEC822F11F49A365007E3D6C /* AudioListViewController.swift in Sources */,
 				EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */,
+				EE8CF7A4205E1AA100EA9729 /* MainWireFramePresenter.swift in Sources */,
 				EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */,
+				EE9267BD2046E468009DB5B4 /* EmptyWireFrame.swift in Sources */,
 				EEC822EF1F49A365007E3D6C /* AppDelegate.swift in Sources */,
 				EE4E07201F4EF8B8009FC635 /* FlickerButtonView.swift in Sources */,
+				EE8CF7A1205E158300EA9729 /* DimmingPresentationController.swift in Sources */,
+				EE9267BB2046E1E0009DB5B4 /* MainTabBarController.swift in Sources */,
 				EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */,
 				EE4E07261F4EF90E009FC635 /* AudioPlayViewController.swift in Sources */,
-				BEC09032204628C10022E5AD /* PlaySummaryView.swift in Sources */,
+				EE529C0C20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift in Sources */,
+				BEC09032204628C10022E5AD /* MiniPlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

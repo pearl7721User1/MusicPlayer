@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AudioListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let mp3Urls = MyPlayItem.playList()
     

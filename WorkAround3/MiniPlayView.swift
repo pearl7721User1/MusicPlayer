@@ -1,5 +1,5 @@
 //
-//  PlaySummaryView.swift
+//  MiniPlayView.swift
 //  WorkAround3
 //
 //  Created by GIWON1 on 2018. 2. 28..
@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol PlaySummaryViewDelegate {
-    func didTapped(playSummaryView: PlaySummaryView)
+protocol MiniPlayViewDelegate {
+    func didTapped(miniPlayView: MiniPlayView)
 }
 
-class PlaySummaryView: UIView {
+class MiniPlayView: UIView {
 
     @IBOutlet var contentView: UIView!
-    var delegate:PlaySummaryViewDelegate?
+    var delegate:MiniPlayViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +28,7 @@ class PlaySummaryView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("PlaySummaryView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("MiniPlayView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds
     }
@@ -36,7 +36,7 @@ class PlaySummaryView: UIView {
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         
         print("tapped")
-        delegate?.didTapped(playSummaryView: self)
+        delegate?.didTapped(miniPlayView: self)
         
     }
     
