@@ -11,7 +11,9 @@ import MediaPlayer
 
 class AudioListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    let mp3Urls = MyPlayItem.playList()
+    var playItems: [PlayItem] {
+        return (UIApplication.shared.delegate as! AppDelegate).coreDataStack.playItems
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,24 +21,19 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         if let label = cell.viewWithTag(10) as? UILabel {
-            label.text = mp3Urls[indexPath.row].title
+            label.text = playItems[indexPath.row].title
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mp3Urls.count
+        return playItems.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

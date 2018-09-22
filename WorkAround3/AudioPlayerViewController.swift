@@ -9,12 +9,13 @@
 import UIKit
 import AVFoundation
 
-protocol AudioPlayerViewControllerDelegate {
+protocol AudioPlayerAccessDelegate {
     
-    func audioPlayer() -> AVAudioPlayer
+    var audioPlayer: AVAudioPlayer {get}
+    func update(playHead value: Float)
 }
 
-class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AudioPlayerViewController: UIViewController, AudioPlayerAccessDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var dashboardCell1: AudioPlayerDashboardCell1!
     @IBOutlet var dashboardCell2: AudioPlayerDashboardCell2!
@@ -27,7 +28,7 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     
     var timer = Timer()
     
-    var player = AVAudioPlayer()
+    
     let filePath = Bundle.main.path(forResource: "AEE_937__Did_Lindsay_Win_the_Gold_Find_Out_At_the_End_of_This_Episode", ofType: "mp3")
     //Bundle.main.path(forResource: "Hooded", ofType: "mp3")
     var isPlaying = false
@@ -37,6 +38,8 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        
         
         do {
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath!))
@@ -129,9 +132,4 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     
 }
 
-extension AudioPlayerViewController: AudioPlayerViewControllerDelegate {
-    func audioPlayer() -> AVAudioPlayer {
-        return self.player
-    }
-}
 

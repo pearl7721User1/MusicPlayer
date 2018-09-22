@@ -74,6 +74,19 @@ class CoreDataStack {
         }
     }
     
+    // MARK: - Updating Core Data records
+    func update(index: Int, playHead value: Float) {
+        
+        guard index > 0, index < playItems.count else {
+            return
+        }
+        
+        let playItem = playItems[index]
+        playItem.playHead = value
+        
+        saveContext()
+    }
+    
     
     // MARK: - Core Data Saving support
     func saveContext () {
