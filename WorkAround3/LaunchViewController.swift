@@ -8,50 +8,71 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController, MiniPlayViewDelegate {
-
-    var presenter: MainWireFramePresenter!
+class LaunchViewController: UIViewController {
     
-    @IBOutlet weak var btn: UIButton!
+    // MARK: - view controllers
+    lazy var audioPlayerViewController: AudioPlayerViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AudioPlayerViewController") as! AudioPlayerViewController
+        
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        
+        return viewController
+    }()
     
+    
+    lazy var mainTabBarController: UITabBarController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+        
+        return viewController
+    }()
+    
+    // MARK: - views
     @IBOutlet weak var miniPlayView: MiniPlayView!
     
-    @IBAction func btnTapped(_ sender: UIButton) {
-        
-        // create a snapshot
-        if let snapshotView = miniPlayView.snapshotView(afterScreenUpdates: true) {
-            
-            snapshotView.center = miniPlayView.center;
-            self.view.addSubview(snapshotView)
-            
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                
-                snapshotView.frame = self.view.bounds
-                
-            }, completion: { (finished) -> Void in
-                snapshotView.removeFromSuperview()
-            })
-            
-        }
-        
-        
-        // transform
-        
-        
-    }
-    
+    // MARK: - functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        miniPlayView.delegate = self
+        setViewHierarchyAndLayout()
         
-        // Do any additional setup after loading the view.
-    }
-
-    func didTapped(miniPlayView: MiniPlayView) {
-        
-        presenter.presentAudioPlayViewController(from: self)
     }
     
+    func setViewHierarchyAndLayout() {
+
+        // add main tab bar controller
+        self.addChildViewController(mainTabBarController)
+        self.view.addSubview(mainTabBarController.view)
+
+        mainTabBarController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        mainTabBarController.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        mainTabBarController.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        mainTabBarController.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        mainTabBarController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        // set launchViewController's view hierarchy
+        self.view.bringSubview(toFront: self.miniPlayView)
+    }
+    
+}
+
+extension LaunchViewController: UIViewControllerTransitioningDelegate {
+    
+    func presentationController(forPresented presented: UIViewController,
+                                presenting: UIViewController?,
+                                source: UIViewController) -> UIPresentationController? {
+        return DimmingPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil//popupAnimationController
+    }
+    /*
+     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+     return SlideOutAnimationController()
+     }
+     */
 }

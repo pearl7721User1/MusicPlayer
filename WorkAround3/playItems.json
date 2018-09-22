@@ -1,0 +1,32 @@
+{
+  "sample_mp3s":
+  [{
+  "show_name": "Snap Judgement",
+  "title": "Snap #920 - Campfire Tales V",
+  "description": "An all new season of Spooked, the podcast, is dropping early August. In this episode, we’re featuring some of our favorite stories from Spooked, season one.",
+  "duration": 3309,
+  "published_date": "Thu, 19 Jul 2018 12:00:00 EDT",
+  "thumbnail_image_name_in_bundle": "snap_920.png",
+  "mp3_file_name_in_bundle": "snap_920.mp3"
+  },
+  {
+  "show_name": "6 Minute English",
+  "title": "Is technology always the solution?",
+  "description": "Catherine and Rob discuss whether we suffer from technochauvinism.",
+  "duration": 393,
+  "published_date": "Thu, 19 Jul 2018 6:23:00 EDT",
+  "thumbnail_image_name_in_bundle": "technology.jpg",
+  "mp3_file_name_in_bundle": "technology.mp3"
+  },
+  {
+  "show_name": "Discovery",
+  "title": "The Nun’s Salamander",
+  "description": "A convent of Mexican nuns is helping to save the one of the world's most endangered and most remarkable amphibians: the axolotl, a truly bizarre creature of serious scientific interest worldwide and an animal of deep-rooted cultural significance in Mexico. The Sisters of Immaculate Health rarely venture out of their monastery in the central Mexican town of Patzcuaro. Yet they have become the most adept and successful breeders of their local species of this aquatic salamander. Scientists marvel at their axolotl-breeding talents and are now working with them to save the animal from extinction. BBC News science correspondent Victoria Gill is allowed into the convent to discover at least some of the nun's secrets. Producer: Andrew Luck-Baker Picture: Lake Patzcuaro axolotl Credit: Credit the picture Will Condliffe, Chester Zoo",
+  "duration": 1704,
+  "published_date": "Mon, 23 Jul 2018 16:00:00 EDT",
+  "thumbnail_image_name_in_bundle": "salamander.jpg",
+  "mp3_file_name_in_bundle": "salamander.mp3"
+  }
+  ]
+  
+}
