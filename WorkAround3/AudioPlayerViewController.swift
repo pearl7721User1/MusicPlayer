@@ -15,7 +15,7 @@ protocol AudioPlayerAccessDelegate {
     func update(playHead value: Float)
 }
 
-class AudioPlayerViewController: UIViewController, AudioPlayerAccessDelegate, UITableViewDataSource, UITableViewDelegate {
+class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var dashboardCell1: AudioPlayerDashboardCell1!
     @IBOutlet var dashboardCell2: AudioPlayerDashboardCell2!
@@ -27,9 +27,10 @@ class AudioPlayerViewController: UIViewController, AudioPlayerAccessDelegate, UI
     let heightOfCell3: CGFloat = 50
     
     var timer = Timer()
+    var audioPlayer: AVAudioPlayer!
+    var playItem: PlayItem!
     
-    
-    let filePath = Bundle.main.path(forResource: "AEE_937__Did_Lindsay_Win_the_Gold_Find_Out_At_the_End_of_This_Episode", ofType: "mp3")
+    let filePath = Bundle.main.path(forResource: "salamander", ofType: "mp3")
     //Bundle.main.path(forResource: "Hooded", ofType: "mp3")
     var isPlaying = false
     
@@ -37,17 +38,18 @@ class AudioPlayerViewController: UIViewController, AudioPlayerAccessDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // init audio player
+//        audioPlayer = (UIApplication.shared.delegate as! AppDelegate).audioPlayer
         
         
         
         do {
-            try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath!))
+            try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath!))
         } catch {
             print("Could not load file")
         }
         
-        dashboardCell1.audioPlayerViewControllerDelegate = self
+        dashboardCell1.audioPlayer = audioPlayer
         dashboardCell1.initUI()
         
         

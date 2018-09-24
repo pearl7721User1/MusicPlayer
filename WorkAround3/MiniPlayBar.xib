@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MiniPlayView" customModule="WorkAround3" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MiniPlayBar" customModule="WorkAround3" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="YAx-Tx-Se6"/>
             </connections>
@@ -26,33 +26,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="397" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="7YG-RC-XTb" appends="YES" id="N6Q-Ai-4qd"/>
-                        </connections>
                     </view>
                     <blurEffect style="light"/>
                 </visualEffectView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_3622.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="kHF-pQ-aBC">
-                    <rect key="frame" x="20" y="12" width="78" height="61"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="salamander.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kHF-pQ-aBC">
+                    <rect key="frame" x="20" y="12" width="60" height="60"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="78" id="FxC-e2-YLP"/>
-                        <constraint firstAttribute="height" constant="61" id="cGs-Kb-hsk"/>
+                        <constraint firstAttribute="width" constant="60" id="FxC-e2-YLP"/>
+                        <constraint firstAttribute="height" constant="60" id="cGs-Kb-hsk"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFW-gf-cp7" userLabel="ButtonsContainerView">
-                    <rect key="frame" x="118" y="0.0" width="279" height="85"/>
+                    <rect key="frame" x="100" y="0.0" width="297" height="85"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUh-qY-xcx">
-                            <rect key="frame" x="118" y="32" width="42" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUh-qY-xcx">
+                            <rect key="frame" x="127" y="32" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="0.76142518599999998" green="1" blue="0.88412499509999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="zUh-qY-xcx" firstAttribute="centerY" secondItem="WFW-gf-cp7" secondAttribute="centerY" id="0Hc-6m-8d0"/>
+                        <constraint firstItem="zUh-qY-xcx" firstAttribute="centerX" secondItem="WFW-gf-cp7" secondAttribute="centerX" id="LNL-jc-B92"/>
+                    </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="jxg-Pp-xpK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="0VR-9d-RNp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="jxg-Pp-xpK" secondAttribute="bottom" id="9bR-sB-LEF"/>
@@ -67,15 +68,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="44.5" y="-236.5"/>
+            <point key="canvasLocation" x="24" y="-237"/>
         </view>
-        <tapGestureRecognizer id="7YG-RC-XTb">
-            <connections>
-                <action selector="tapped:" destination="-1" id="HdZ-bM-sIn"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="IMG_3622.JPG" width="4032" height="3024"/>
+        <image name="salamander.jpg" width="170" height="170"/>
     </resources>
 </document>

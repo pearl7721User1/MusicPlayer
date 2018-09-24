@@ -8,7 +8,11 @@
 
 import UIKit
 
-class LaunchViewController: UIViewController {
+
+
+class LaunchViewController: UIViewController, MiniPlayBarDelegate {
+    
+    
     
     // MARK: - view controllers
     lazy var audioPlayerViewController: AudioPlayerViewController = {
@@ -30,13 +34,13 @@ class LaunchViewController: UIViewController {
     }()
     
     // MARK: - views
-    @IBOutlet weak var miniPlayView: MiniPlayView!
+    @IBOutlet weak var miniPlayBar: MiniPlayBar!
     
     // MARK: - functions
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewHierarchyAndLayout()
-        
+        miniPlayBar.delegate = self
     }
     
     func setViewHierarchyAndLayout() {
@@ -53,9 +57,19 @@ class LaunchViewController: UIViewController {
         mainTabBarController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         // set launchViewController's view hierarchy
-        self.view.bringSubview(toFront: self.miniPlayView)
+        self.view.bringSubview(toFront: self.miniPlayBar)
     }
     
+    func play(playItem: PlayItem) {
+        // set mini play bar
+//        (UIApplication.shared.delegate as! AppDelegate).audioPlayer
+        
+        //
+    }
+    
+    func didTapped(miniPlayBar: MiniPlayBar) {
+        self.present(audioPlayerViewController, animated: true, completion: nil)
+    }
 }
 
 extension LaunchViewController: UIViewControllerTransitioningDelegate {

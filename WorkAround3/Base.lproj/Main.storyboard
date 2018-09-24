@@ -41,10 +41,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIB-ug-wYw" customClass="MiniPlayView" customModule="WorkAround3" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIB-ug-wYw" customClass="MiniPlayBar" customModule="WorkAround3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="537" width="375" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="4BD-MO-dj8"/>
+                                    <constraint firstAttribute="height" constant="85" id="4BD-MO-dj8"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -56,7 +56,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="miniPlayView" destination="DIB-ug-wYw" id="Up9-sv-nQH"/>
+                        <outlet property="miniPlayBar" destination="DIB-ug-wYw" id="4hi-JG-GFk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RT7-Zk-vLG" userLabel="First Responder" sceneMemberID="firstResponder"/>

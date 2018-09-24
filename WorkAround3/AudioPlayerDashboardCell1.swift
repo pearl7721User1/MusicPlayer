@@ -8,10 +8,11 @@
 
 
 import UIKit
+import AVFoundation
 
 class AudioPlayerDashboardCell1: UITableViewCell {
 
-    var audioPlayerViewControllerDelegate: AudioPlayerViewControllerDelegate?
+    var audioPlayer: AVAudioPlayer?
     
     @IBOutlet weak var playHeadSlider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
@@ -36,7 +37,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     @IBAction func playBtnTapped(_ sender: UIButton) {
         
         // TODO : - make sure that the audioPlayer is a class so that 'let' doesn't create a copy
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
             
             // change model
             if audioPlayer.isPlaying {
@@ -51,7 +52,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     }
     @IBAction func backwardBtnTapped(_ sender: UIButton) {
         
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
             
             audioPlayer.currentTime = audioPlayer.currentTime - 1
             updateUI()
@@ -60,7 +61,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     
     @IBAction func forwardBtnTapped(_ sender: UIButton) {
         
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
          
             audioPlayer.currentTime = audioPlayer.currentTime + 1
             updateUI()
@@ -68,7 +69,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     }
     
     @IBAction func rateBtnTapped(_ sender: UIButton) {
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
             let rate = nextPlayRate(rate: audioPlayer.rate)
             audioPlayer.rate = rate
             
@@ -89,14 +90,14 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     }
     
     @IBAction func playHeadValueChanged(_ sender: UISlider) {
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
             
             audioPlayer.currentTime = TimeInterval(sender.value)
         }
     }
     
     @IBAction func volumeValueChanged(_ sender: UISlider) {
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
             
             audioPlayer.volume = sender.value / 100.0
         }
@@ -106,7 +107,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     
     func initUI() {
         
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
             
             // playhead slider units, min, max values
             playHeadSlider.minimumValue = 0
@@ -127,7 +128,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     func updateUI() {
         
         
-        if let audioPlayer = audioPlayerViewControllerDelegate?.audioPlayer() {
+        if let audioPlayer = audioPlayer {
             
             // audio play button image
             if audioPlayer.isPlaying {
