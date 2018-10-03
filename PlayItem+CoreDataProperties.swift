@@ -24,6 +24,7 @@ extension PlayItem {
     @NSManaged public var publishedDate: NSDate?
     @NSManaged public var playHead: Float
     @NSManaged public var desc: String?
+    @NSManaged public var fileName: String?
 
 
     static func samplePlayItems(context: NSManagedObjectContext) -> [PlayItem]? {
@@ -33,7 +34,7 @@ extension PlayItem {
     }
 
     
-    static func playItem(context: NSManagedObjectContext, title: String, thumbnail: UIImage, duration: CGFloat, showname: String, publishedDate: Date, playHead: CGFloat, desc: String) -> PlayItem {
+    static func playItem(context: NSManagedObjectContext, title: String, thumbnail: UIImage, duration: CGFloat, showname: String, publishedDate: Date, playHead: CGFloat, desc: String, fileName: String) -> PlayItem {
         
         let playItem = PlayItem(context: context)
         playItem.title = title
@@ -43,6 +44,7 @@ extension PlayItem {
         playItem.publishedDate = publishedDate as NSDate
         playItem.playHead = Float(playHead)
         playItem.desc = desc
+        playItem.fileName = fileName
         
         return playItem
     }

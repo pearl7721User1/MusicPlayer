@@ -22,6 +22,8 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var dashboardCell3: AudioPlayerDashboardCell3!
     @IBOutlet weak var tableView: UITableView!
     
+    var audioPlayDelegate: AudioPlayDelegate?
+    
     @IBOutlet var tableHeaderView: UIView!
     let heightOfCell2: CGFloat = 60
     let heightOfCell3: CGFloat = 50
@@ -34,14 +36,10 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     //Bundle.main.path(forResource: "Hooded", ofType: "mp3")
     var isPlaying = false
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // init audio player
-//        audioPlayer = (UIApplication.shared.delegate as! AppDelegate).audioPlayer
-        
-        
         
         do {
             try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath!))

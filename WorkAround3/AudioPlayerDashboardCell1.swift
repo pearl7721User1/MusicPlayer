@@ -23,6 +23,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     @IBOutlet weak var volumeSlider: UISlider!
     
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

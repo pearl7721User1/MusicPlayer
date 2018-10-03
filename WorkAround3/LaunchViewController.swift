@@ -7,20 +7,45 @@
 //
 
 import UIKit
+import AVFoundation
 
+protocol AudioPlayDelegate {
+    func play(sender: AnyObject)
+    func pause(sender: AnyObject)
+    func movePlayHeadBackward(sender: AnyObject)
+    func movePlayHeadForward(sender: AnyObject)
+}
 
+protocol SettingAudioPlayerDelegate {
+    func setPlayItem(sender: AnyObject, playItem: PlayItem)
+    func triggerMiniPlayBar(sender: AnyObject, playItem: PlayItem)
+    func triggerAudioPlayerViewController(sender: AnyObject, playItem: PlayItem)
+}
 
-class LaunchViewController: UIViewController, MiniPlayBarDelegate {
+protocol AudioListDataSourceDelegate {
+    func playItems(sender: UIViewController) -> [PlayItem]
+}
+
+class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioPlayDelegate, AudioListDataSourceDelegate {
+    
+    // MARK: - Properties, etc
+    var audioPlayer = AVAudioPlayer()
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.style
+    }
+    var style:UIStatusBarStyle = .default
     
     
+    // MARK: - View/VC Init
+    @IBOutlet weak var miniBarBottomConstraint: NSLayoutConstraint!
     
-    // MARK: - view controllers
     lazy var audioPlayerViewController: AudioPlayerViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "AudioPlayerViewController") as! AudioPlayerViewController
         
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
+        viewController.audioPlayDelegate = self
         
         return viewController
     }()
@@ -28,22 +53,36 @@ class LaunchViewController: UIViewController, MiniPlayBarDelegate {
     
     lazy var mainTabBarController: UITabBarController = {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+        let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
         
-        return viewController
+        let audioListViewController = tabBarViewController.audioListViewController()
+        audioListViewController.settingAudioPlayerDelegate = self
+        audioListViewController.dataSourceDelegate = self
+        
+        return tabBarViewController
     }()
     
-    // MARK: - views
     @IBOutlet weak var miniPlayBar: MiniPlayBar!
     
-    // MARK: - functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewHierarchyAndLayout()
-        miniPlayBar.delegate = self
+        
+        // embed tab bar controller
+        embedTabBarController()
+        
+        // get existing playItems from Core Data Stack
+        
+        
+        // create mini play bar, set delegate
+        miniPlayBar.audioPlayDelegate = self
+        miniPlayBar.settingAudioPlayerDelegate = self
+        
+        //
+        
     }
     
-    func setViewHierarchyAndLayout() {
+    
+    func embedTabBarController(){
 
         // add main tab bar controller
         self.addChildViewController(mainTabBarController)
@@ -58,17 +97,60 @@ class LaunchViewController: UIViewController, MiniPlayBarDelegate {
         
         // set launchViewController's view hierarchy
         self.view.bringSubview(toFront: self.miniPlayBar)
-    }
-    
-    func play(playItem: PlayItem) {
-        // set mini play bar
-//        (UIApplication.shared.delegate as! AppDelegate).audioPlayer
         
-        //
+        // reposition mini play bar
+        if self.tabBarController != nil {
+            miniBarBottomConstraint.constant = self.tabBarController!.tabBar.bounds.height
+        }
     }
     
-    func didTapped(miniPlayBar: MiniPlayBar) {
+    // MARK: - AudioPlayDelegate
+    func play(sender: AnyObject) {
+        audioPlayer.play()
+    }
+    
+    func pause(sender: AnyObject) {
+        audioPlayer.pause()
+    }
+    
+    func movePlayHeadBackward(sender: AnyObject) {
+        audioPlayer.currentTime = audioPlayer.currentTime - 1
+    }
+    
+    func movePlayHeadForward(sender: AnyObject) {
+        audioPlayer.currentTime = audioPlayer.currentTime + 1
+    }
+    
+    
+    // MARK: - SettingAudioPlayerDelegate
+    func setPlayItem(sender: AnyObject, playItem: PlayItem) {
+        
+        guard let fileName = playItem.fileName else {
+            print("audio fileName is nil")
+            return
+        }
+        
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: fileName))
+        } catch {
+            print("Could not load file")
+        }
+        
+    }
+    
+    func triggerMiniPlayBar(sender: AnyObject, playItem: PlayItem) {
+        miniPlayBar.isHidden = false
+        miniPlayBar.configureView(playItem: playItem)
+    }
+    
+    func triggerAudioPlayerViewController(sender: AnyObject, playItem: PlayItem) {
         self.present(audioPlayerViewController, animated: true, completion: nil)
+        audioPlayerViewController.configureView(playItem: playItem)
+    }
+    
+    // MARK: - AudioListDataSourceDelegate
+    func playItems(sender: UIViewController) -> [PlayItem] {
+        return (UIApplication.shared.delegate as! AppDelegate).coreDataStack.playItems
     }
 }
 

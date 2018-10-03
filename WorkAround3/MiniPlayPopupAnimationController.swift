@@ -17,7 +17,7 @@ class MiniPlayPopupAnimationController: NSObject, UIViewControllerAnimatedTransi
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        /*
+        
         guard let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
             
             fatalError("UITransitionContextViewKey.to for springUpAnimator is unavailable")
@@ -44,14 +44,12 @@ class MiniPlayPopupAnimationController: NSObject, UIViewControllerAnimatedTransi
             
         }, completion: { (finished) in
             
-            snapShotView.removeFromSuperview()
-            snapShotView.frame = oldSnapShotViewFrame
             transitionContext.completeTransition(finished)
             
             // do post procedures for animation
             self.presentingDelegate.springUpPostAnimationClosure()
         })
-        */
+        
         
     }
 }

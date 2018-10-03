@@ -11,6 +11,9 @@ import MediaPlayer
 
 class AudioListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
+    var dataSourceDelegate: AudioListDataSourceDelegate?
+    
     var playItems: [PlayItem] {
         return (UIApplication.shared.delegate as! AppDelegate).coreDataStack.playItems
     }

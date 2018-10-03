@@ -47,13 +47,13 @@ class ResourceReadingHelper {
                 let publishedDateString = v["published_date"] as? String,
                 let thumbnailName = v["thumbnail_image_name_in_bundle"] as? String,
                 let fileName = v["mp3_file_name_in_bundle"] as? String else {
-                    
-                    return [PlayItem]()
+                
+                continue
             }
             
             
             guard let thumbnailImage = UIImage(named: thumbnailName) else {
-                return [PlayItem]()
+                continue
             }
             
             var date: Date {
@@ -62,7 +62,7 @@ class ResourceReadingHelper {
                 return formatter.date(from: publishedDateString)!
             }
             
-            let playItem = PlayItem.playItem(context: context, title: title, thumbnail: thumbnailImage, duration: CGFloat(duration.floatValue), showname: showName, publishedDate: date, playHead: 0.0, desc: description)
+            let playItem = PlayItem.playItem(context: context, title: title, thumbnail: thumbnailImage, duration: CGFloat(duration.floatValue), showname: showName, publishedDate: date, playHead: 0.0, desc: description, fileName: fileName)
             
             playItems.append(playItem)
         }

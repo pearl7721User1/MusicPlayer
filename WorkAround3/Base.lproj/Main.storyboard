@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIB-ug-wYw" customClass="MiniPlayBar" customModule="WorkAround3" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="537" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="502" width="375" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="85" id="4BD-MO-dj8"/>
                                 </constraints>
@@ -56,6 +56,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="miniBarBottomConstraint" destination="QHC-OP-NeH" id="fFp-qe-oyR"/>
                         <outlet property="miniPlayBar" destination="DIB-ug-wYw" id="4hi-JG-GFk"/>
                     </connections>
                 </viewController>
@@ -63,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="-1182" y="-43"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="j5O-ZA-CTT">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" id="18d-He-xWn" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" hidesBottomBarWhenPushed="YES" id="18d-He-xWn" customClass="MainTabBarController" customModule="WorkAround3" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MlK-8J-I1g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -84,7 +85,7 @@
         <!--Item-->
         <scene sceneID="zEK-Ms-4t2">
             <objects>
-                <navigationController storyboardIdentifier="SecondTabNavigationController" id="STI-O0-fwM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AudioListNavigationController" id="STI-O0-fwM" customClass="AudioListNavigationController" customModule="WorkAround3" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="4vl-pk-ylK"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="luP-Ch-TO6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -43,6 +43,8 @@
 		EEC822F41F49A365007E3D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC822F21F49A365007E3D6C /* Main.storyboard */; };
 		EEC822F61F49A365007E3D6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEC822F51F49A365007E3D6C /* Assets.xcassets */; };
 		EEC822F91F49A365007E3D6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC822F71F49A365007E3D6C /* LaunchScreen.storyboard */; };
+		EECBA174216256D2006E5FA9 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBA173216256D1006E5FA9 /* MainTabBarController.swift */; };
+		EECBA176216257A9006E5FA9 /* AudioListNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECBA175216257A9006E5FA9 /* AudioListNavigationController.swift */; };
 		EECF1F9821551E9E00DC2E29 /* WorkAround3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF1F9721551E9E00DC2E29 /* WorkAround3Tests.swift */; };
 		EECF1F9F21551EEF00DC2E29 /* PlayItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E128E2109EDD20071DE2A /* PlayItem+CoreDataClass.swift */; };
 		EECF1FA021551EF200DC2E29 /* PlayItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E128F2109EDD20071DE2A /* PlayItem+CoreDataProperties.swift */; };
@@ -100,6 +102,8 @@
 		EEC822F51F49A365007E3D6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEC822F81F49A365007E3D6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEC822FA1F49A365007E3D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EECBA173216256D1006E5FA9 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		EECBA175216257A9006E5FA9 /* AudioListNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioListNavigationController.swift; sourceTree = "<group>"; };
 		EECF1F9521551E9E00DC2E29 /* WorkAround3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkAround3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECF1F9721551E9E00DC2E29 /* WorkAround3Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkAround3Tests.swift; sourceTree = "<group>"; };
 		EECF1F9921551E9E00DC2E29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,18 +129,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BEC090302046282B0022E5AD /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				BEC09031204628C10022E5AD /* MiniPlayBar.swift */,
-				BEC0903320462DCB0022E5AD /* MiniPlayBar.xib */,
-				EE21D76620C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift */,
-				EE21D76820C802E100CA8C71 /* AudioPlayerDashboardCell2.swift */,
-				EE21D76A20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift */,
-			);
-			name = CustomViews;
-			sourceTree = "<group>";
-		};
 		EE1E12932111E1400071DE2A /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,11 +161,10 @@
 		EE21D76320C7F79A00CA8C71 /* MainWireFrame */ = {
 			isa = PBXGroup;
 			children = (
-				EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */,
-				EEC822F01F49A365007E3D6C /* AudioListViewController.swift */,
+				EECBA17021625658006E5FA9 /* LaunchViewController */,
+				EECBA16F2162563E006E5FA9 /* AudioPlayerViewController */,
 				EE529C0A20692B78001B9EE9 /* Animators */,
 				EE63265F203DA2ED00347FB8 /* Model */,
-				BEC090302046282B0022E5AD /* CustomViews */,
 				EE4E07241F4EF8C0009FC635 /* PlayButton */,
 			);
 			name = MainWireFrame;
@@ -235,7 +226,6 @@
 				EE21D76320C7F79A00CA8C71 /* MainWireFrame */,
 				EEC822EE1F49A365007E3D6C /* AppDelegate.swift */,
 				EECF1FA72155DF2B00DC2E29 /* CoreDataStack.swift */,
-				EE6326692040522500347FB8 /* LaunchViewController.swift */,
 				EEC822F21F49A365007E3D6C /* Main.storyboard */,
 				EEC822F51F49A365007E3D6C /* Assets.xcassets */,
 				EEC822F71F49A365007E3D6C /* LaunchScreen.storyboard */,
@@ -243,6 +233,38 @@
 				EE1E12872109EC380071DE2A /* Model.xcdatamodeld */,
 			);
 			path = WorkAround3;
+			sourceTree = "<group>";
+		};
+		EECBA16F2162563E006E5FA9 /* AudioPlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */,
+				EE21D76620C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift */,
+				EE21D76820C802E100CA8C71 /* AudioPlayerDashboardCell2.swift */,
+				EE21D76A20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift */,
+			);
+			name = AudioPlayerViewController;
+			sourceTree = "<group>";
+		};
+		EECBA17021625658006E5FA9 /* LaunchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EECBA172216256A3006E5FA9 /* TabbarController */,
+				EE6326692040522500347FB8 /* LaunchViewController.swift */,
+				BEC09031204628C10022E5AD /* MiniPlayBar.swift */,
+				BEC0903320462DCB0022E5AD /* MiniPlayBar.xib */,
+			);
+			name = LaunchViewController;
+			sourceTree = "<group>";
+		};
+		EECBA172216256A3006E5FA9 /* TabbarController */ = {
+			isa = PBXGroup;
+			children = (
+				EEC822F01F49A365007E3D6C /* AudioListViewController.swift */,
+				EECBA173216256D1006E5FA9 /* MainTabBarController.swift */,
+				EECBA175216257A9006E5FA9 /* AudioListNavigationController.swift */,
+			);
+			name = TabbarController;
 			sourceTree = "<group>";
 		};
 		EECF1F9621551E9E00DC2E29 /* WorkAround3Tests */ = {
@@ -389,9 +411,11 @@
 				EE21D76920C802E100CA8C71 /* AudioPlayerDashboardCell2.swift in Sources */,
 				EEC822EF1F49A365007E3D6C /* AppDelegate.swift in Sources */,
 				EE4E07201F4EF8B8009FC635 /* FlickerButtonView.swift in Sources */,
+				EECBA176216257A9006E5FA9 /* AudioListNavigationController.swift in Sources */,
 				EE21D76B20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift in Sources */,
 				EE8CF7A1205E158300EA9729 /* DimmingPresentationController.swift in Sources */,
 				EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */,
+				EECBA174216256D2006E5FA9 /* MainTabBarController.swift in Sources */,
 				EE1E12902109EDD20071DE2A /* PlayItem+CoreDataClass.swift in Sources */,
 				EE529C0C20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift in Sources */,
 				BEC09032204628C10022E5AD /* MiniPlayBar.swift in Sources */,

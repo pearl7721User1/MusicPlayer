@@ -9,18 +9,14 @@
 import UIKit
 import AVFoundation
 
-protocol MiniPlayBarDelegate {
-    func didTapped(miniPlayBar: MiniPlayBar)
-}
-
 
 @IBDesignable
 class MiniPlayBar: UIView {
 
     @IBOutlet var contentView: UIView!
-    var delegate: MiniPlayBarDelegate?
-    
-    var audioPlayer: AVAudioPlayer?
+    var audioPlayDelegate: AudioPlayDelegate?
+    var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
+
     /*
     var playItem: PlayItem? {
         
