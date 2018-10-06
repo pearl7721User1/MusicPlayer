@@ -10,10 +10,12 @@ import UIKit
 import AVFoundation
 
 protocol AudioPlayDelegate {
-    func play(sender: AnyObject)
-    func pause(sender: AnyObject)
+    func playOrPause(sender: AnyObject)
     func movePlayHeadBackward(sender: AnyObject)
     func movePlayHeadForward(sender: AnyObject)
+    func setCurrentTime(sender: AnyObject, currentTime: TimeInterval)
+    func setVolume(sender: AnyObject, volume: Float)
+    func setPlayRate(sender: AnyObject, playRate: Float)
 }
 
 protocol SettingAudioPlayerDelegate {
@@ -26,6 +28,10 @@ protocol AudioListDataSourceDelegate {
     func playItems(sender: UIViewController) -> [PlayItem]
 }
 
+protocol AudioPlayStatusObserver {
+    func update(currentTime: TimeInterval, isPlaying: Bool)
+}
+
 class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioPlayDelegate, AudioListDataSourceDelegate {
     
     // MARK: - Properties, etc
@@ -35,6 +41,10 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     }
     var style:UIStatusBarStyle = .default
     
+    private var observerArray = [AudioPlayStatusObserver]()
+    private var currentPlayItem: PlayItem?
+    private var timer = Timer()
+
     
     // MARK: - View/VC Init
     @IBOutlet weak var miniBarBottomConstraint: NSLayoutConstraint!
@@ -46,6 +56,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
         viewController.audioPlayDelegate = self
+        self.observerArray.append(viewController)
         
         return viewController
     }()
@@ -76,9 +87,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         // create mini play bar, set delegate
         miniPlayBar.audioPlayDelegate = self
         miniPlayBar.settingAudioPlayerDelegate = self
-        
-        //
-        
+        observerArray.append(miniPlayBar)
     }
     
     
@@ -99,18 +108,47 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         self.view.bringSubview(toFront: self.miniPlayBar)
         
         // reposition mini play bar
-        if self.tabBarController != nil {
-            miniBarBottomConstraint.constant = self.tabBarController!.tabBar.bounds.height
-        }
+        miniBarBottomConstraint.constant = mainTabBarController.tabBar.bounds.height
+        
     }
     
     // MARK: - AudioPlayDelegate
-    func play(sender: AnyObject) {
-        audioPlayer.play()
-    }
-    
-    func pause(sender: AnyObject) {
-        audioPlayer.pause()
+    func playOrPause(sender: AnyObject) {
+        
+        if let currentPlayItem = currentPlayItem {
+            
+            if (audioPlayer.isPlaying) {
+                audioPlayer.pause()
+
+                timer.invalidate()
+                
+                let currentTime = self.audioPlayer.currentTime
+                let isPlaying = self.audioPlayer.isPlaying
+                
+                for observer in self.observerArray {
+                    observer.update(currentTime: currentTime, isPlaying: isPlaying)
+                }
+                
+                currentPlayItem.playHead = currentTime
+                print(currentPlayItem.playHead)
+
+            } else {
+                audioPlayer.play()
+                timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {[unowned self] (timer: Timer) in
+                    
+                    let currentTime = self.audioPlayer.currentTime
+                    let isPlaying = self.audioPlayer.isPlaying
+                    
+                    for observer in self.observerArray {
+                        observer.update(currentTime: currentTime, isPlaying: isPlaying)
+                    }
+                    
+                    currentPlayItem.playHead = currentTime
+                }
+                
+                timer.fire()
+            }
+        }
     }
     
     func movePlayHeadBackward(sender: AnyObject) {
@@ -121,31 +159,67 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         audioPlayer.currentTime = audioPlayer.currentTime + 1
     }
     
+    func setCurrentTime(sender: AnyObject, currentTime: TimeInterval) {
+        audioPlayer.currentTime = currentTime        
+        currentPlayItem?.playHead = currentTime
+        
+        for observer in self.observerArray {
+            observer.update(currentTime: currentTime, isPlaying: audioPlayer.isPlaying)
+        }
+    }
+    
+    func setVolume(sender: AnyObject, volume: Float) {
+        audioPlayer.volume = volume
+    }
+    
+    func setPlayRate(sender: AnyObject, playRate: Float) {
+        audioPlayer.rate = playRate
+    }
+    
     
     // MARK: - SettingAudioPlayerDelegate
     func setPlayItem(sender: AnyObject, playItem: PlayItem) {
+        
+        timer.invalidate()
         
         guard let fileName = playItem.fileName else {
             print("audio fileName is nil")
             return
         }
         
+        
         do {
-            try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: fileName))
+            let resourceFilePath = "\(Bundle.main.bundlePath)/\(fileName)"
+            try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: resourceFilePath))
         } catch {
             print("Could not load file")
+            return
         }
-        
+
+        currentPlayItem = playItem
+        audioPlayer.currentTime = playItem.playHead
+        self.playOrPause(sender: self)
     }
     
     func triggerMiniPlayBar(sender: AnyObject, playItem: PlayItem) {
         miniPlayBar.isHidden = false
-        miniPlayBar.configureView(playItem: playItem)
+        
+        if let currentPlayItem = currentPlayItem {
+            miniPlayBar.configureView(playItem: currentPlayItem, isPlaying: audioPlayer.isPlaying)
+        }
+        
+        
     }
     
     func triggerAudioPlayerViewController(sender: AnyObject, playItem: PlayItem) {
         self.present(audioPlayerViewController, animated: true, completion: nil)
-        audioPlayerViewController.configureView(playItem: playItem)
+        
+        if currentPlayItem != nil {
+            
+            audioPlayerViewController.configureView(playItem: playItem, isPlaying: audioPlayer.isPlaying, volume: audioPlayer.volume, rate: audioPlayer.rate)
+            
+        }
+        
     }
     
     // MARK: - AudioListDataSourceDelegate

@@ -14,9 +14,9 @@ import XCTest
 class WorkAround3Tests: XCTestCase {
     
     
-    
+    /*
     func testLoadingSampleData() {
-        let playItems = PlayItem.samplePlayItems()
+        let playItems = PlayItem.samplePlayItems(context: <#NSManagedObjectContext#>)
         
         for (i,v) in playItems.enumerated() {
             
@@ -25,5 +25,5 @@ class WorkAround3Tests: XCTestCase {
         }
     }
     
-    
+    */
 }

@@ -12,8 +12,9 @@ import AVFoundation
 
 class AudioPlayerDashboardCell1: UITableViewCell {
 
-    var audioPlayer: AVAudioPlayer?
+    var audioPlayDelegate: AudioPlayDelegate?
     
+    @IBOutlet weak var playItemImageView: UIImageView!
     @IBOutlet weak var playHeadSlider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var currentPlayTimeLabel: UILabel!
@@ -22,60 +23,76 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     @IBOutlet weak var rateButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
     
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func configureView(isPlaying: Bool, volume: Float, rate: Float, currentTime: TimeInterval, duration: TimeInterval, image:UIImage?) {
+        
+        // set playhead slider units
+        playHeadSlider.minimumValue = 0
+        playHeadSlider.maximumValue = Float(duration.rounded(.awayFromZero))
+        playHeadSlider.value = 0
+        
+        // set playhead slide value
+        playHeadSlider.value = Float(currentTime.rounded(.toNearestOrAwayFromZero))
+        
+        // set playhead label
+        currentPlayTimeLabel.text = String(format:"%.0f", currentTime.rounded(.toNearestOrAwayFromZero))
+        
+        // set play button
+        if isPlaying {
+            playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
+        } else {
+            playButton.setImage(UIImage(named:"play.png")!, for: .normal)
+        }
+        
+        // set volume slide value
+        volumeSlider.minimumValue = 0
+        volumeSlider.maximumValue = 100
+        volumeSlider.value = volume * 100
+        
+        // set rate button title
+        
+        // set image
+        playItemImageView.image = image
+        
+        // set duration
+        durationLabel.text = String(format:"%.0f", duration)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
     
     @IBAction func playBtnTapped(_ sender: UIButton) {
         
         // TODO : - make sure that the audioPlayer is a class so that 'let' doesn't create a copy
-        if let audioPlayer = audioPlayer {
+        if let audioPlayDelegate = audioPlayDelegate {
             
             // change model
-            if audioPlayer.isPlaying {
-                audioPlayer.pause()
-            } else {
-                audioPlayer.play()
-            }
+            audioPlayDelegate.playOrPause(sender: self)
             
-            // update ui
-            updateUI()
         }
     }
     @IBAction func backwardBtnTapped(_ sender: UIButton) {
         
-        if let audioPlayer = audioPlayer {
+        if let audioPlayDelegate = audioPlayDelegate {
             
-            audioPlayer.currentTime = audioPlayer.currentTime - 1
-            updateUI()
+            audioPlayDelegate.movePlayHeadBackward(sender: self)
         }
     }
     
     @IBAction func forwardBtnTapped(_ sender: UIButton) {
         
-        if let audioPlayer = audioPlayer {
+        if let audioPlayDelegate = audioPlayDelegate {
          
-            audioPlayer.currentTime = audioPlayer.currentTime + 1
-            updateUI()
+            audioPlayDelegate.movePlayHeadForward(sender: self)
         }
     }
     
     @IBAction func rateBtnTapped(_ sender: UIButton) {
-        if let audioPlayer = audioPlayer {
+        /*
+        if let audioPlayDelegate = audioPlayDelegate {
             let rate = nextPlayRate(rate: audioPlayer.rate)
             audioPlayer.rate = rate
             
-            updateUI()
+//            updateUI()
         }
+ */
     }
     
     private func nextPlayRate(rate: Float) -> Float {
@@ -91,41 +108,21 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     }
     
     @IBAction func playHeadValueChanged(_ sender: UISlider) {
-        if let audioPlayer = audioPlayer {
+        if let audioPlayDelegate = audioPlayDelegate {
             
-            audioPlayer.currentTime = TimeInterval(sender.value)
+            audioPlayDelegate.setCurrentTime(sender: self, currentTime: TimeInterval(sender.value))
         }
     }
     
     @IBAction func volumeValueChanged(_ sender: UISlider) {
-        if let audioPlayer = audioPlayer {
+        if let audioPlayDelegate = audioPlayDelegate {
             
-            audioPlayer.volume = sender.value / 100.0
+            audioPlayDelegate.setVolume(sender: self, volume: sender.value / 100.0)
         }
         
     }
     
-    
-    func initUI() {
-        
-        if let audioPlayer = audioPlayer {
-            
-            // playhead slider units, min, max values
-            playHeadSlider.minimumValue = 0
-            playHeadSlider.maximumValue = Float(audioPlayer.duration.rounded(.awayFromZero))
-            playHeadSlider.value = 0
-            
-            // duration
-            durationLabel.text = String(format:"%.0f", audioPlayer.duration)
-            
-            // volume
-            volumeSlider.minimumValue = 0
-            volumeSlider.maximumValue = 100
-            volumeSlider.value = audioPlayer.volume * 100
-            
-        }
-    }
-    
+    /*
     func updateUI() {
         
         
@@ -152,6 +149,23 @@ class AudioPlayerDashboardCell1: UITableViewCell {
             
             // playhead
             playHeadSlider.setValue(Float(audioPlayer.currentTime.rounded(.toNearestOrAwayFromZero)), animated: false)
+        }
+    }
+    */
+    
+    func update(currentTime: TimeInterval, isPlaying: Bool) {
+        
+        // set play head slider value
+        playHeadSlider.setValue(Float(currentTime.rounded(.toNearestOrAwayFromZero)), animated: false)
+        
+        // set play head label
+        currentPlayTimeLabel.text = String(format:"%.0f", currentTime.rounded(.toNearestOrAwayFromZero))
+        
+        // set play button
+        if isPlaying {
+            playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
+        } else {
+            playButton.setImage(UIImage(named:"play.png")!, for: .normal)
         }
     }
 }

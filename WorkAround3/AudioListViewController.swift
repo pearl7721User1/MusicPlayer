@@ -14,49 +14,59 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
     var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
     var dataSourceDelegate: AudioListDataSourceDelegate?
     
-    var playItems: [PlayItem] {
-        return (UIApplication.shared.delegate as! AppDelegate).coreDataStack.playItems
+    @IBAction func btnTapped(_ sender: UIBarButtonItem) {
+        
+        let items = playItems()
+        
+        for (i, v) in items!.enumerated() {
+            
+            print("playItem\(i):\(v.playHead)")
+
+        }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+    
+    func playItems() -> [PlayItem]? {
+        if dataSourceDelegate != nil {
+            return dataSourceDelegate!.playItems(sender: self)
+        }
+        return nil
     }
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         if let label = cell.viewWithTag(10) as? UILabel {
-            label.text = playItems[indexPath.row].title
+            
+            if let playItems = playItems() {
+                label.text = playItems[indexPath.row].title
+            }
+            
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playItems.count
+        
+        if let playItems = playItems() {
+            return playItems.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
-        var newVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PlayViewController") as! PlayViewController
         
-        newVC.modalPresentationStyle = .overFullScreen
-        
-        self.present(newVC, animated: true, completion: {
-            self.dim()
-        })
-        */
+        guard let playItems = playItems(),
+            let delegate = settingAudioPlayerDelegate else {
+                return
+        }
+
+        delegate.setPlayItem(sender: self, playItem: playItems[indexPath.row])
+        delegate.triggerMiniPlayBar(sender: self, playItem: playItems[indexPath.row])
+
     }
     
-    func dim() {
-        self.view.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-    }
-    
-    func undoDim() {
-        self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-    }
 }
 

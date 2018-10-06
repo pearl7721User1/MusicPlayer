@@ -15,71 +15,46 @@ protocol AudioPlayerAccessDelegate {
     func update(playHead value: Float)
 }
 
-class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AudioPlayStatusObserver {
+    
     @IBOutlet var dashboardCell1: AudioPlayerDashboardCell1!
     @IBOutlet var dashboardCell2: AudioPlayerDashboardCell2!
     @IBOutlet var dashboardCell3: AudioPlayerDashboardCell3!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: TopCornersRoundedTableView!
     
-    var audioPlayDelegate: AudioPlayDelegate?
+    var audioPlayDelegate: AudioPlayDelegate? {
+        didSet {
+            self.dashboardCell1.audioPlayDelegate = audioPlayDelegate
+        }
+    }
     
     @IBOutlet var tableHeaderView: UIView!
     let heightOfCell2: CGFloat = 60
     let heightOfCell3: CGFloat = 50
     
-    var timer = Timer()
-    var audioPlayer: AVAudioPlayer!
-    var playItem: PlayItem!
     
-    let filePath = Bundle.main.path(forResource: "salamander", ofType: "mp3")
-    //Bundle.main.path(forResource: "Hooded", ofType: "mp3")
-    var isPlaying = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // init audio player
-        
-        do {
-            try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath!))
-        } catch {
-            print("Could not load file")
-        }
-        
-        dashboardCell1.audioPlayer = audioPlayer
-        dashboardCell1.initUI()
-        
-        
-        let maskLayer = CAShapeLayer()
-        let path = UIBezierPath(roundedRect:
-            CGRect(origin: CGPoint.zero, size: CGSize(width: tableView.bounds.width, height: tableView.bounds.height)),
-                                byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 40.0, height: 40.0))
-        maskLayer.path = path.cgPath
-        tableView.layer.mask = maskLayer
         tableView.tableHeaderView = tableHeaderView
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer: Timer) in
-            self.dashboardCell1.updateUI()
-        }
-        
-        timer.fire()
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        timer.invalidate()
-    }
-    
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         
         dismiss(animated: true, completion: nil)
     }
     
+    func configureView(playItem: PlayItem, isPlaying: Bool, volume: Float, rate: Float) {
+        
+        var image: UIImage?
+        if let imageData = playItem.thumbnail {
+            image = UIImage(data: imageData as Data)
+        }
+        
+        dashboardCell1.configureView(isPlaying: isPlaying, volume: volume, rate: rate, currentTime: playItem.playHead, duration: playItem.duration, image:image)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -119,17 +94,12 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        print("scrollViewDidScrol l")
-        
-        let maskLayer = CAShapeLayer()
-        let path = UIBezierPath(roundedRect:
-            CGRect(origin: scrollView.contentOffset.y < 0 ? CGPoint.zero : scrollView.contentOffset, size: CGSize(width: tableView.bounds.width, height: tableView.bounds.height)),
-                                byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 15.0, height: 15.0))
-        maskLayer.path = path.cgPath
-        tableView.layer.mask = maskLayer
+        tableView.updateTopCornersRounding(scrollView)
     }
     
+    func update(currentTime: TimeInterval, isPlaying: Bool) {
+        dashboardCell1.update(currentTime: currentTime, isPlaying: isPlaying)
+    }
 }
 
 

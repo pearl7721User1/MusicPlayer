@@ -28,7 +28,7 @@ class MiniPlayPopupAnimationController: NSObject, UIViewControllerAnimatedTransi
         toView.frame = containerView.frame
         toView.alpha = 0.0 // toView starts from alpha 0.0, and increases its opacity for fromView's dissolving effect
         containerView.addSubview(toView)
-        
+        /*
         // get a copycat image view for animation
         let snapShotView = presentingDelegate.springUpSnapShotImgView
         let oldSnapShotViewFrame = snapShotView.frame
@@ -49,7 +49,7 @@ class MiniPlayPopupAnimationController: NSObject, UIViewControllerAnimatedTransi
             // do post procedures for animation
             self.presentingDelegate.springUpPostAnimationClosure()
         })
-        
+        */
         
     }
 }

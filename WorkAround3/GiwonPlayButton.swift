@@ -93,7 +93,7 @@ class GiwonPlayButton: UIView {
         self.addSubview(pauseView)
     }
     
-    func tapRecognizer(_ gr: UITapGestureRecognizer) {
+    @objc func tapRecognizer(_ gr: UITapGestureRecognizer) {
         
         playing = !playing
     }

@@ -19,10 +19,10 @@ extension PlayItem {
 
     @NSManaged public var title: String?
     @NSManaged public var thumbnail: NSData?
-    @NSManaged public var duration: Float
+    @NSManaged public var duration: Double
     @NSManaged public var showname: String?
     @NSManaged public var publishedDate: NSDate?
-    @NSManaged public var playHead: Float
+    @NSManaged public var playHead: Double
     @NSManaged public var desc: String?
     @NSManaged public var fileName: String?
 
@@ -34,15 +34,15 @@ extension PlayItem {
     }
 
     
-    static func playItem(context: NSManagedObjectContext, title: String, thumbnail: UIImage, duration: CGFloat, showname: String, publishedDate: Date, playHead: CGFloat, desc: String, fileName: String) -> PlayItem {
+    static func playItem(context: NSManagedObjectContext, title: String, thumbnail: UIImage, duration: Double, showname: String, publishedDate: Date, playHead: Double, desc: String, fileName: String) -> PlayItem {
         
         let playItem = PlayItem(context: context)
         playItem.title = title
         playItem.thumbnail = UIImagePNGRepresentation(thumbnail)! as NSData
-        playItem.duration = Float(duration)
+        playItem.duration = duration
         playItem.showname = showname
         playItem.publishedDate = publishedDate as NSDate
-        playItem.playHead = Float(playHead)
+        playItem.playHead = playHead
         playItem.desc = desc
         playItem.fileName = fileName
         

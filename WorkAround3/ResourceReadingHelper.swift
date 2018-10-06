@@ -62,7 +62,7 @@ class ResourceReadingHelper {
                 return formatter.date(from: publishedDateString)!
             }
             
-            let playItem = PlayItem.playItem(context: context, title: title, thumbnail: thumbnailImage, duration: CGFloat(duration.floatValue), showname: showName, publishedDate: date, playHead: 0.0, desc: description, fileName: fileName)
+            let playItem = PlayItem.playItem(context: context, title: title, thumbnail: thumbnailImage, duration: duration.doubleValue, showname: showName, publishedDate: date, playHead: 0.0, desc: description, fileName: fileName)
             
             playItems.append(playItem)
         }

@@ -13,7 +13,7 @@ class HasbeenPausedView: FlickerButtonView {
     
     override func drawContents(_ context: CGContext, rect: CGRect, color:UIColor) {
         
-        var trianglePath = UIBezierPath()
+        let trianglePath = UIBezierPath()
         trianglePath.move(to: CGPoint(x: 0, y: 0))
         trianglePath.addLine(to: CGPoint(x: 0, y: 40))
         trianglePath.addLine(to: CGPoint(x: 40, y: 20))

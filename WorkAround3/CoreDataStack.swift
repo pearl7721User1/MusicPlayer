@@ -75,7 +75,7 @@ class CoreDataStack {
     }
     
     // MARK: - Updating Core Data records
-    func update(index: Int, playHead value: Float) {
+    func update(index: Int, playHead value: Double) {
         
         guard index > 0, index < playItems.count else {
             return

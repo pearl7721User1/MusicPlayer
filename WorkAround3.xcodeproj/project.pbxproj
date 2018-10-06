@@ -51,6 +51,7 @@
 		EECF1FA22155214100DC2E29 /* playItems.json in Resources */ = {isa = PBXBuildFile; fileRef = EE1E129B2111E1810071DE2A /* playItems.json */; };
 		EECF1FA82155DF2C00DC2E29 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF1FA72155DF2B00DC2E29 /* CoreDataStack.swift */; };
 		EECF1FD72158895700DC2E29 /* ResourceReadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECF1FD62158895700DC2E29 /* ResourceReadingHelper.swift */; };
+		EEFEA8442164ACC50060C884 /* TopCornersRoundedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFEA8432164ACC50060C884 /* TopCornersRoundedTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		EECF1F9921551E9E00DC2E29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EECF1FA72155DF2B00DC2E29 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		EECF1FD62158895700DC2E29 /* ResourceReadingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceReadingHelper.swift; sourceTree = "<group>"; };
+		EEFEA8432164ACC50060C884 /* TopCornersRoundedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCornersRoundedTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */,
+				EEFEA8432164ACC50060C884 /* TopCornersRoundedTableView.swift */,
 				EE21D76620C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift */,
 				EE21D76820C802E100CA8C71 /* AudioPlayerDashboardCell2.swift */,
 				EE21D76A20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift */,
@@ -327,6 +330,7 @@
 					EEC822EA1F49A365007E3D6C = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 8LSJUN2G6D;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					EECF1F9421551E9E00DC2E29 = {
@@ -404,6 +408,7 @@
 				EEC822F11F49A365007E3D6C /* AudioListViewController.swift in Sources */,
 				EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */,
 				EE1E12892109EC380071DE2A /* Model.xcdatamodeld in Sources */,
+				EEFEA8442164ACC50060C884 /* TopCornersRoundedTableView.swift in Sources */,
 				EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */,
 				EECF1FD72158895700DC2E29 /* ResourceReadingHelper.swift in Sources */,
 				EECF1FA82155DF2C00DC2E29 /* CoreDataStack.swift in Sources */,
@@ -578,7 +583,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = softv.WorkAround3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -591,7 +597,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = softv.WorkAround3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

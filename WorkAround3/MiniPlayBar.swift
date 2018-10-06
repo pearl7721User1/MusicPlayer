@@ -11,28 +11,19 @@ import AVFoundation
 
 
 @IBDesignable
-class MiniPlayBar: UIView {
+class MiniPlayBar: UIView, AudioPlayStatusObserver {
+    
 
     @IBOutlet var contentView: UIView!
     var audioPlayDelegate: AudioPlayDelegate?
     var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
-
-    /*
-    var playItem: PlayItem? {
-        
-        didSet {
-            if let thumbnailImage = UIImage(data: self.playItem.thumbnail) {
-                imageView.image = thumbnailImage
-            }
-            
-            titleLabel.text = playItem.title
-        }
- 
-    }
-*/
+    var playItem: PlayItem?
+    
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var playButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -58,54 +49,54 @@ class MiniPlayBar: UIView {
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
+    func configureView(playItem: PlayItem, isPlaying: Bool) {
+        self.playItem = playItem
+        
+        if let imageData = playItem.thumbnail,
+            let image = UIImage(data: imageData as Data) {
+            imageView.image = image
+            titleLabel.text = playItem.title
+        }
+        
+        titleLabel.text = playItem.title
+        
+        // TODO: - set play button
+        if isPlaying {
+            playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
+        } else {
+            playButton.setImage(UIImage(named:"play.png")!, for: .normal)
+        }
+    }
+    
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         
-        print("tapped")
-        delegate?.didTapped(miniPlayBar: self)
-        
-    }
-    
-    func update(for playItem: PlayItem) {
-//        self.playItem = playItem
-    }
-    
-    @IBAction func play(_ sender: UIButton) {
-        
-        if let audioPlayer = audioPlayer {
-            // change model
-            if audioPlayer.isPlaying {
-                audioPlayer.pause()
-            } else {
-                audioPlayer.play()
-            }
-            
-            // update ui
-//            updateUI()
+        if let delegate = settingAudioPlayerDelegate,
+            let playItem = playItem {
+            delegate.triggerAudioPlayerViewController(sender: self, playItem: playItem)
         }
         
     }
     
-    @IBAction func fastForward(_ sender: UIButton) {
-        if let audioPlayer = audioPlayer {
-            
-            audioPlayer.currentTime = audioPlayer.currentTime + 1
-//            updateUI()
+    @IBAction func fastForwardBtnTapped(_ sender: UIButton) {
+        if let delegate = audioPlayDelegate {
+            delegate.movePlayHeadForward(sender: self)
         }
     }
     
-    /*
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        
+    @IBAction func playBtnTapped(_ sender: UIButton) {
+        if let delegate = audioPlayDelegate {
+            delegate.playOrPause(sender: self)
+        }
+    }
+    
+    
+    func update(currentTime: TimeInterval, isPlaying: Bool) {
+        if isPlaying {
+            playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
+        } else {
+            playButton.setImage(UIImage(named:"play.png")!, for: .normal)
+        }
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.alpha = 0.5
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.alpha = 1.0
-    }
- */
     
 }
