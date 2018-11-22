@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <gestureRecognizers/>
                     </view>
-                    <blurEffect style="light"/>
+                    <blurEffect style="extraLight"/>
                 </visualEffectView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="salamander.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kHF-pQ-aBC">
                     <rect key="frame" x="20" y="12" width="60" height="60"/>
@@ -80,6 +80,13 @@
                         <constraint firstItem="a6W-U1-IKD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zUh-qY-xcx" secondAttribute="trailing" constant="10" id="voB-rz-7JZ"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUl-pv-yTt" userLabel="Separator">
+                    <rect key="frame" x="0.0" y="84" width="397" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="muX-HH-Kcs"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
@@ -91,7 +98,10 @@
                 <constraint firstItem="WFW-gf-cp7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="QVq-UT-ftN"/>
                 <constraint firstItem="zUh-qY-xcx" firstAttribute="leading" secondItem="kHF-pQ-aBC" secondAttribute="trailing" constant="37" id="Svt-zK-cXT"/>
                 <constraint firstItem="kHF-pQ-aBC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="TWF-Xa-6Lz"/>
+                <constraint firstItem="YUl-pv-yTt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dND-cS-aft"/>
+                <constraint firstAttribute="trailing" secondItem="YUl-pv-yTt" secondAttribute="trailing" id="fzf-3h-dC2"/>
                 <constraint firstItem="jxg-Pp-xpK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="gQ8-q7-cil"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="YUl-pv-yTt" secondAttribute="bottom" id="i2H-wp-Mg3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="WFW-gf-cp7" secondAttribute="bottom" id="ukI-4m-I4s"/>
                 <constraint firstItem="kHF-pQ-aBC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="wTj-T3-dqo"/>
             </constraints>

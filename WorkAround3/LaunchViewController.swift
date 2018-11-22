@@ -24,15 +24,12 @@ protocol SettingAudioPlayerDelegate {
     func triggerAudioPlayerViewController(sender: AnyObject, playItem: PlayItem)
 }
 
-protocol AudioListDataSourceDelegate {
-    func playItems(sender: UIViewController) -> [PlayItem]
-}
 
 protocol AudioPlayStatusObserver {
     func update(currentTime: TimeInterval, isPlaying: Bool)
 }
 
-class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioPlayDelegate, AudioListDataSourceDelegate {
+class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioPlayDelegate {
     
     // MARK: - Properties, etc
     var audioPlayer = AVAudioPlayer()
@@ -62,13 +59,14 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     }()
     
     
-    lazy var mainTabBarController: UITabBarController = {
+    lazy var mainTabBarController: MainTabBarController = {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
         
         let audioListViewController = tabBarViewController.audioListViewController()
         audioListViewController.settingAudioPlayerDelegate = self
-        audioListViewController.dataSourceDelegate = self
+        audioListViewController.fetchRequest = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.allPlayItemsFetchRequest
+        audioListViewController.context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.viewContext
         
         return tabBarViewController
     }()
@@ -81,13 +79,16 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         // embed tab bar controller
         embedTabBarController()
         
-        // get existing playItems from Core Data Stack
-        
         
         // create mini play bar, set delegate
         miniPlayBar.audioPlayDelegate = self
         miniPlayBar.settingAudioPlayerDelegate = self
         observerArray.append(miniPlayBar)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // get existing playItems from Core Data Stack
+        mainTabBarController.setAudioList(bottomInset: miniPlayBar.bounds.height)
     }
     
     
@@ -109,7 +110,6 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         
         // reposition mini play bar
         miniBarBottomConstraint.constant = mainTabBarController.tabBar.bounds.height
-        
     }
     
     // MARK: - AudioPlayDelegate
@@ -222,10 +222,6 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         
     }
     
-    // MARK: - AudioListDataSourceDelegate
-    func playItems(sender: UIViewController) -> [PlayItem] {
-        return (UIApplication.shared.delegate as! AppDelegate).coreDataStack.playItems
-    }
 }
 
 extension LaunchViewController: UIViewControllerTransitioningDelegate {

@@ -41,10 +41,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DIB-ug-wYw" customClass="MiniPlayBar" customModule="WorkAround3" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="502" width="375" height="85"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DIB-ug-wYw" customClass="MiniPlayBar" customModule="WorkAround3" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="502" width="375" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="4BD-MO-dj8"/>
+                                    <constraint firstAttribute="height" constant="80" id="4BD-MO-dj8"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -157,6 +157,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="OGL-Tu-WH5" id="u36-zV-Eww"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

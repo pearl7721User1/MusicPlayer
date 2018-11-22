@@ -17,5 +17,9 @@ class MainTabBarController: UITabBarController {
         return viewControllers[0] as! AudioListViewController
     }
     
-
+    func setAudioList(bottomInset: CGFloat) {
+        
+        audioListViewController().tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomInset, 0)
+//        audioListViewController().tableView.contentInset = UIEdgeInsetsMake(0, 0, bottomInset, 0)
+    }
 }

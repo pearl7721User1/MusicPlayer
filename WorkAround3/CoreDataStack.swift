@@ -11,16 +11,9 @@ import CoreData
 
 class CoreDataStack {
     
-    // MARK: Properties
-    lazy var playItems: [PlayItem] = {
-        let fetchRequest: NSFetchRequest<PlayItem> = PlayItem.fetchRequest()
-        
-        guard let playItems = try? self.persistentContainer.viewContext.fetch(fetchRequest) else {
-            print("couldn't fetch play items from Core Data")
-            return [PlayItem]()
-        }
-        
-        return playItems
+    // MARK: Properties    
+    lazy var allPlayItemsFetchRequest: NSFetchRequest<PlayItem> = {
+        return PlayItem.fetchRequest()
     }()
     
     var persistentContainer: NSPersistentContainer = {
@@ -72,19 +65,6 @@ class CoreDataStack {
             print("did put sample data")
             return
         }
-    }
-    
-    // MARK: - Updating Core Data records
-    func update(index: Int, playHead value: Double) {
-        
-        guard index > 0, index < playItems.count else {
-            return
-        }
-        
-        let playItem = playItems[index]
-        playItem.playHead = value
-        
-        saveContext()
     }
     
     

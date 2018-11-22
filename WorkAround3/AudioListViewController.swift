@@ -7,18 +7,36 @@
 //
 
 import UIKit
-import MediaPlayer
+import CoreData
 
 class AudioListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
-    var dataSourceDelegate: AudioListDataSourceDelegate?
+    var fetchRequest: NSFetchRequest<PlayItem>?
+    var context: NSManagedObjectContext?
+    var playItems = [PlayItem]()
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let fetchRequest = fetchRequest,
+            let context = context {
+            do {
+                playItems = try context.fetch(fetchRequest)
+            } catch {
+                print("playItems couldn't be fetched")
+            }
+        } else {
+            print("fetchRequest or context isn't initiated")
+        }
+        
+    }
     
     @IBAction func btnTapped(_ sender: UIBarButtonItem) {
         
-        let items = playItems()
-        
-        for (i, v) in items!.enumerated() {
+        for (i, v) in playItems.enumerated() {
             
             print("playItem\(i):\(v.playHead)")
 
@@ -26,21 +44,12 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    func playItems() -> [PlayItem]? {
-        if dataSourceDelegate != nil {
-            return dataSourceDelegate!.playItems(sender: self)
-        }
-        return nil
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         if let label = cell.viewWithTag(10) as? UILabel {
             
-            if let playItems = playItems() {
-                label.text = playItems[indexPath.row].title
-            }
+            label.text = playItems[indexPath.row].title
             
         }
         
@@ -48,19 +57,15 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if let playItems = playItems() {
-            return playItems.count
-        } else {
-            return 0
-        }
+        return playItems.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let playItems = playItems(),
-            let delegate = settingAudioPlayerDelegate else {
-                return
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let delegate = settingAudioPlayerDelegate else {
+            return
         }
 
         delegate.setPlayItem(sender: self, playItem: playItems[indexPath.row])
