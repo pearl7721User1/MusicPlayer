@@ -10,24 +10,56 @@ import UIKit
 
 class MiniPlayPopupAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
+    private var playerViewSnapshot: UIView
+    private var miniPlayBarSnapshot: UIView
+    private var miniPlayBarStartingFrame: CGRect
     
+    init(playerViewSnapshot: UIView, miniPlayBarSnapshot: UIView, miniPlayBarSnapshotStartingFrame: CGRect) {
+        self.playerViewSnapshot = playerViewSnapshot
+        self.miniPlayBarSnapshot = miniPlayBarSnapshot
+        self.miniPlayBarStartingFrame = miniPlayBarSnapshotStartingFrame
+    }
+ 
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 1.0
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        guard let toView = transitionContext.view(forKey: UITransitionContextViewKey.to) else {
+        guard let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
             
-            fatalError("UITransitionContextViewKey.to for springUpAnimator is unavailable")
+            fatalError()
         }
         
         let containerView = transitionContext.containerView
+        let finalFrame = transitionContext.finalFrame(for: toViewController)
         
-        toView.frame = containerView.frame
-        toView.alpha = 0.0 // toView starts from alpha 0.0, and increases its opacity for fromView's dissolving effect
-        containerView.addSubview(toView)
+        containerView.addSubview(playerViewSnapshot)
+        containerView.addSubview(miniPlayBarSnapshot)
+        
+        playerViewSnapshot.frame = CGRect(x: miniPlayBarStartingFrame.origin.x, y: miniPlayBarStartingFrame.origin.y, width: finalFrame.width, height: finalFrame.height)
+        miniPlayBarSnapshot.frame = miniPlayBarStartingFrame
+        miniPlayBarSnapshot.alpha = 1.0
+        
+        
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.8, options: [], animations: {
+            
+            self.playerViewSnapshot.frame = finalFrame
+            self.miniPlayBarSnapshot.frame = CGRect(x: finalFrame.origin.x, y: finalFrame.origin.y, width: self.miniPlayBarSnapshot.frame.width, height: self.miniPlayBarSnapshot.frame.height)
+            self.miniPlayBarSnapshot.alpha = 0.0
+            
+        }, completion: { (finished) in
+            
+            self.playerViewSnapshot.removeFromSuperview()
+            self.miniPlayBarSnapshot.removeFromSuperview()
+            
+            toViewController.view.frame = finalFrame
+            containerView.addSubview(toViewController.view)
+            transitionContext.completeTransition(finished)
+            
+        })
+        
         /*
         // get a copycat image view for animation
         let snapShotView = presentingDelegate.springUpSnapShotImgView

@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MiniPlayBar" customModule="WorkAround3" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="YAx-Tx-Se6"/>
-                <outlet property="imageView" destination="kHF-pQ-aBC" id="gij-Zt-8CK"/>
+                <outlet property="imageView" destination="bYh-00-nzH" id="KZG-V5-7Qi"/>
                 <outlet property="playButton" destination="a6W-U1-IKD" id="Xi5-aL-FcK"/>
                 <outlet property="titleLabel" destination="zUh-qY-xcx" id="a9H-fO-zfF"/>
             </connections>
@@ -32,18 +32,25 @@
                     </view>
                     <blurEffect style="extraLight"/>
                 </visualEffectView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="salamander.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kHF-pQ-aBC">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYh-00-nzH" customClass="ImageShadeEffectView" customModule="WorkAround3" customModuleProvider="target">
                     <rect key="frame" x="20" y="12" width="60" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="FxC-e2-YLP"/>
-                        <constraint firstAttribute="height" constant="60" id="cGs-Kb-hsk"/>
+                        <constraint firstAttribute="height" constant="60" id="v8m-kb-usd"/>
+                        <constraint firstAttribute="width" constant="60" id="vcg-jV-bg2"/>
                     </constraints>
-                </imageView>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="salamander.jpg"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="scaleAnimationFactor">
+                            <real key="value" value="0.90000000000000002"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFW-gf-cp7" userLabel="ButtonsContainerView">
                     <rect key="frame" x="100" y="0.0" width="297" height="85"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUh-qY-xcx">
-                            <rect key="frame" x="17" y="32" width="42" height="21"/>
+                            <rect key="frame" x="10" y="32" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -72,12 +79,13 @@
                         </button>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="zUh-qY-xcx" firstAttribute="leading" secondItem="WFW-gf-cp7" secondAttribute="leading" constant="10" id="8oH-fl-zhB"/>
+                        <constraint firstItem="a6W-U1-IKD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zUh-qY-xcx" secondAttribute="trailing" constant="10" id="Aaz-0k-Oep"/>
                         <constraint firstItem="zUh-qY-xcx" firstAttribute="centerY" secondItem="WFW-gf-cp7" secondAttribute="centerY" id="DRQ-RA-pgy"/>
                         <constraint firstItem="EJx-5x-WQm" firstAttribute="centerY" secondItem="WFW-gf-cp7" secondAttribute="centerY" id="KlY-yj-DjG"/>
                         <constraint firstItem="a6W-U1-IKD" firstAttribute="centerY" secondItem="WFW-gf-cp7" secondAttribute="centerY" id="OAz-53-eFS"/>
                         <constraint firstAttribute="trailing" secondItem="EJx-5x-WQm" secondAttribute="trailing" constant="20" id="iqy-zT-1Zi"/>
                         <constraint firstItem="EJx-5x-WQm" firstAttribute="leading" secondItem="a6W-U1-IKD" secondAttribute="trailing" constant="20" id="sFy-g6-FZR"/>
-                        <constraint firstItem="a6W-U1-IKD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zUh-qY-xcx" secondAttribute="trailing" constant="10" id="voB-rz-7JZ"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUl-pv-yTt" userLabel="Separator">
@@ -93,17 +101,17 @@
                 <constraint firstItem="jxg-Pp-xpK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="0VR-9d-RNp"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="jxg-Pp-xpK" secondAttribute="bottom" id="9bR-sB-LEF"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WFW-gf-cp7" secondAttribute="trailing" id="Ebf-Xu-IyC"/>
-                <constraint firstItem="WFW-gf-cp7" firstAttribute="leading" secondItem="kHF-pQ-aBC" secondAttribute="trailing" constant="20" id="Joc-oY-p5q"/>
+                <constraint firstItem="WFW-gf-cp7" firstAttribute="leading" secondItem="bYh-00-nzH" secondAttribute="trailing" constant="20" id="NpZ-al-vjU"/>
+                <constraint firstItem="bYh-00-nzH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="OSD-jr-lV6"/>
                 <constraint firstItem="jxg-Pp-xpK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="P4K-fd-v1q"/>
                 <constraint firstItem="WFW-gf-cp7" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="QVq-UT-ftN"/>
-                <constraint firstItem="zUh-qY-xcx" firstAttribute="leading" secondItem="kHF-pQ-aBC" secondAttribute="trailing" constant="37" id="Svt-zK-cXT"/>
-                <constraint firstItem="kHF-pQ-aBC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="TWF-Xa-6Lz"/>
+                <constraint firstItem="bYh-00-nzH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Xaz-dc-zyb"/>
                 <constraint firstItem="YUl-pv-yTt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dND-cS-aft"/>
                 <constraint firstAttribute="trailing" secondItem="YUl-pv-yTt" secondAttribute="trailing" id="fzf-3h-dC2"/>
                 <constraint firstItem="jxg-Pp-xpK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="gQ8-q7-cil"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="YUl-pv-yTt" secondAttribute="bottom" id="i2H-wp-Mg3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="WFW-gf-cp7" secondAttribute="bottom" id="ukI-4m-I4s"/>
-                <constraint firstItem="kHF-pQ-aBC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="wTj-T3-dqo"/>
+                <constraint firstItem="YUl-pv-yTt" firstAttribute="top" secondItem="bYh-00-nzH" secondAttribute="bottom" constant="12" id="w9s-1n-2IM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

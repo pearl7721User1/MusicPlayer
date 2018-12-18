@@ -38,11 +38,17 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(statusBarTapped), name: NSNotification.Name(rawValue: "statusBarTapped"), object: nil)
+        
         tableView.tableHeaderView = tableHeaderView
     }
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func statusBarTapped() {
         dismiss(animated: true, completion: nil)
     }
     

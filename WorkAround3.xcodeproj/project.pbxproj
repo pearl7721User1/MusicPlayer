@@ -37,6 +37,7 @@
 		EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE632660203DA31400347FB8 /* MyPlayItem.swift */; };
 		EE632664203DA7E500347FB8 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */; };
 		EE63266A2040522500347FB8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6326692040522500347FB8 /* LaunchViewController.swift */; };
+		EE74EEE121C4C3A600D89FFF /* ImageShadeEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE74EEE021C4C3A600D89FFF /* ImageShadeEffectView.swift */; };
 		EE8CF7A1205E158300EA9729 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8CF7A0205E158300EA9729 /* DimmingPresentationController.swift */; };
 		EEC822EF1F49A365007E3D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC822EE1F49A365007E3D6C /* AppDelegate.swift */; };
 		EEC822F11F49A365007E3D6C /* AudioListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC822F01F49A365007E3D6C /* AudioListViewController.swift */; };
@@ -95,6 +96,7 @@
 		EE632660203DA31400347FB8 /* MyPlayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlayItem.swift; sourceTree = "<group>"; };
 		EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		EE6326692040522500347FB8 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		EE74EEE021C4C3A600D89FFF /* ImageShadeEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageShadeEffectView.swift; sourceTree = "<group>"; };
 		EE8CF7A0205E158300EA9729 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		EEC822EB1F49A365007E3D6C /* WorkAround3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkAround3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEC822EE1F49A365007E3D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				EE21D76320C7F79A00CA8C71 /* MainWireFrame */,
 				EEC822EE1F49A365007E3D6C /* AppDelegate.swift */,
 				EECF1FA72155DF2B00DC2E29 /* CoreDataStack.swift */,
+				EE74EEE021C4C3A600D89FFF /* ImageShadeEffectView.swift */,
 				EEC822F21F49A365007E3D6C /* Main.storyboard */,
 				EEC822F51F49A365007E3D6C /* Assets.xcassets */,
 				EEC822F71F49A365007E3D6C /* LaunchScreen.storyboard */,
@@ -406,6 +409,7 @@
 				EE21D76720C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift in Sources */,
 				EE632664203DA7E500347FB8 /* AudioPlayerViewController.swift in Sources */,
 				EEC822F11F49A365007E3D6C /* AudioListViewController.swift in Sources */,
+				EE74EEE121C4C3A600D89FFF /* ImageShadeEffectView.swift in Sources */,
 				EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */,
 				EE1E12892109EC380071DE2A /* Model.xcdatamodeld in Sources */,
 				EEFEA8442164ACC50060C884 /* TopCornersRoundedTableView.swift in Sources */,

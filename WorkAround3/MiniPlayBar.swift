@@ -20,7 +20,7 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     var playItem: PlayItem?
     
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageView: ImageShadeEffectView!
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var playButton: UIButton!
@@ -55,6 +55,7 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
         if let imageData = playItem.thumbnail,
             let image = UIImage(data: imageData as Data) {
             imageView.image = image
+            imageView.isScaledUp = false
             titleLabel.text = playItem.title
         }
         

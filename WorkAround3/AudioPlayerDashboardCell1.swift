@@ -14,7 +14,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
 
     var audioPlayDelegate: AudioPlayDelegate?
     
-    @IBOutlet weak var playItemImageView: UIImageView!
+    @IBOutlet weak var playItemImageView: ImageShadeEffectView!
     @IBOutlet weak var playHeadSlider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var currentPlayTimeLabel: UILabel!
@@ -52,6 +52,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
         
         // set image
         playItemImageView.image = image
+        playItemImageView.isScaledUp = isPlaying
         
         // set duration
         durationLabel.text = String(format:"%.0f", duration)
@@ -167,5 +168,8 @@ class AudioPlayerDashboardCell1: UITableViewCell {
         } else {
             playButton.setImage(UIImage(named:"play.png")!, for: .normal)
         }
+        
+        // set image
+        playItemImageView.isScaledUp = isPlaying
     }
 }

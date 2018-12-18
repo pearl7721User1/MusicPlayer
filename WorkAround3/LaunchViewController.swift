@@ -42,6 +42,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     private var currentPlayItem: PlayItem?
     private var timer = Timer()
 
+    private var playerPopupAnimationController: MiniPlayPopupAnimationController?
     
     // MARK: - View/VC Init
     @IBOutlet weak var miniBarBottomConstraint: NSLayoutConstraint!
@@ -199,6 +200,10 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         currentPlayItem = playItem
         audioPlayer.currentTime = playItem.playHead
         self.playOrPause(sender: self)
+        
+        
+        // save what's been newly selected to play in nsuserdefault
+        UserDefault.
     }
     
     func triggerMiniPlayBar(sender: AnyObject, playItem: PlayItem) {
@@ -212,6 +217,13 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     }
     
     func triggerAudioPlayerViewController(sender: AnyObject, playItem: PlayItem) {
+        
+        let playerViewSnapshot = audioPlayerViewController.view.snapshotView(afterScreenUpdates: true)
+        let miniPlayBarSnapshot = miniPlayBar.snapshotView(afterScreenUpdates: true)
+        
+        playerPopupAnimationController = MiniPlayPopupAnimationController(playerViewSnapshot: playerViewSnapshot!, miniPlayBarSnapshot: miniPlayBarSnapshot!, miniPlayBarSnapshotStartingFrame: miniPlayBar.frame)
+        
+        
         self.present(audioPlayerViewController, animated: true, completion: nil)
         
         if currentPlayItem != nil {
@@ -234,7 +246,7 @@ extension LaunchViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil//popupAnimationController
+        return playerPopupAnimationController
     }
     /*
      func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
