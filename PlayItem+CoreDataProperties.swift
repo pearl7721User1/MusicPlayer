@@ -25,6 +25,7 @@ extension PlayItem {
     @NSManaged public var playHead: Double
     @NSManaged public var desc: String?
     @NSManaged public var fileName: String?
+    @NSManaged public var id: Int16
 
 
     static func samplePlayItems(context: NSManagedObjectContext) -> [PlayItem]? {

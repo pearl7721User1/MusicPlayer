@@ -32,7 +32,7 @@
         <!--Launch View Controller-->
         <scene sceneID="P8P-9a-hAQ">
             <objects>
-                <viewController storyboardIdentifier="LaunchViewController" id="Ake-if-uvk" customClass="LaunchViewController" customModule="WorkAround3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LaunchViewController" automaticallyAdjustsScrollViewInsets="NO" id="Ake-if-uvk" customClass="LaunchViewController" customModule="WorkAround3" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t6j-ap-PaA"/>
                         <viewControllerLayoutGuide type="bottom" id="0zM-ch-7jP"/>
@@ -55,10 +55,6 @@
                             <constraint firstItem="0zM-ch-7jP" firstAttribute="top" secondItem="DIB-ug-wYw" secondAttribute="bottom" constant="80" id="QHC-OP-NeH"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="miniBarBottomConstraint" destination="QHC-OP-NeH" id="fFp-qe-oyR"/>
-                        <outlet property="miniPlayBar" destination="DIB-ug-wYw" id="4hi-JG-GFk"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RT7-Zk-vLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

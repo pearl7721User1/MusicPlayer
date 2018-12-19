@@ -21,10 +21,14 @@ class ImageShadeEffectView: UIView {
             imgBackgroundLayer.contents = image?.cgImage
         }
     }
-    @IBInspectable var scaleAnimationFactor: CGFloat = 0.5
+    @IBInspectable var scaleAnimationFactor: CGFloat = 0.5 {
+        didSet {
+            reflectViewStatus()
+        }
+    }
     var isScaledUp = false {
         didSet {
-            isScaledUp ? scaledUp() : scaledDown()
+            reflectViewStatus()
         }
     }
     
@@ -58,7 +62,6 @@ class ImageShadeEffectView: UIView {
         self.addSubview(visualEffectView)
         self.layer.addSublayer(imgLayer)
         
-        isScaledUp = false
     }
     
     private func scaledDown() {
@@ -72,5 +75,9 @@ class ImageShadeEffectView: UIView {
         imgBackgroundLayer.transform = CATransform3DIdentity
         visualEffectView.isHidden = false
 
+    }
+    
+    private func reflectViewStatus() {
+        isScaledUp ? scaledUp() : scaledDown()
     }
 }

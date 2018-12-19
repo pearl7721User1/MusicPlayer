@@ -16,6 +16,8 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
     var context: NSManagedObjectContext?
     var playItems = [PlayItem]()
     
+    var tableViewBottomInset: CGFloat = 0
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -32,6 +34,8 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
             print("fetchRequest or context isn't initiated")
         }
         
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, tableViewBottomInset, 0)
+
     }
     
     @IBAction func btnTapped(_ sender: UIBarButtonItem) {

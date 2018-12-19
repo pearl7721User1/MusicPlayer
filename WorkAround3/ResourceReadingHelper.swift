@@ -38,7 +38,7 @@ class ResourceReadingHelper {
         
         var playItems = [PlayItem]()
         
-        for (_,v) in array.enumerated() {
+        for (i,v) in array.enumerated() {
             
             guard let showName = v["show_name"] as? String,
                 let title = v["title"] as? String,
@@ -63,6 +63,7 @@ class ResourceReadingHelper {
             }
             
             let playItem = PlayItem.playItem(context: context, title: title, thumbnail: thumbnailImage, duration: duration.doubleValue, showname: showName, publishedDate: date, playHead: 0.0, desc: description, fileName: fileName)
+            playItem.id = Int16(i)
             
             playItems.append(playItem)
         }

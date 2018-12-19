@@ -47,16 +47,16 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFW-gf-cp7" userLabel="ButtonsContainerView">
-                    <rect key="frame" x="100" y="0.0" width="297" height="85"/>
+                    <rect key="frame" x="100" y="0.0" width="297" height="80"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUh-qY-xcx">
-                            <rect key="frame" x="10" y="32" width="42" height="21"/>
+                            <rect key="frame" x="10" y="29.5" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJx-5x-WQm">
-                            <rect key="frame" x="247" y="27" width="30" height="30"/>
+                            <rect key="frame" x="247" y="24.5" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="5E7-Db-ZfJ"/>
                                 <constraint firstAttribute="width" constant="30" id="5OZ-6h-NQU"/>
@@ -67,7 +67,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6W-U1-IKD" userLabel="PlayButton">
-                            <rect key="frame" x="197" y="27" width="30" height="30"/>
+                            <rect key="frame" x="197" y="24.5" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="Hlr-ys-yZT"/>
                                 <constraint firstAttribute="height" constant="30" id="LQo-us-nT8"/>
@@ -84,6 +84,7 @@
                         <constraint firstItem="zUh-qY-xcx" firstAttribute="centerY" secondItem="WFW-gf-cp7" secondAttribute="centerY" id="DRQ-RA-pgy"/>
                         <constraint firstItem="EJx-5x-WQm" firstAttribute="centerY" secondItem="WFW-gf-cp7" secondAttribute="centerY" id="KlY-yj-DjG"/>
                         <constraint firstItem="a6W-U1-IKD" firstAttribute="centerY" secondItem="WFW-gf-cp7" secondAttribute="centerY" id="OAz-53-eFS"/>
+                        <constraint firstAttribute="height" constant="80" id="R8x-kU-WL1"/>
                         <constraint firstAttribute="trailing" secondItem="EJx-5x-WQm" secondAttribute="trailing" constant="20" id="iqy-zT-1Zi"/>
                         <constraint firstItem="EJx-5x-WQm" firstAttribute="leading" secondItem="a6W-U1-IKD" secondAttribute="trailing" constant="20" id="sFy-g6-FZR"/>
                     </constraints>
@@ -110,8 +111,6 @@
                 <constraint firstAttribute="trailing" secondItem="YUl-pv-yTt" secondAttribute="trailing" id="fzf-3h-dC2"/>
                 <constraint firstItem="jxg-Pp-xpK" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="gQ8-q7-cil"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="YUl-pv-yTt" secondAttribute="bottom" id="i2H-wp-Mg3"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="WFW-gf-cp7" secondAttribute="bottom" id="ukI-4m-I4s"/>
-                <constraint firstItem="YUl-pv-yTt" firstAttribute="top" secondItem="bYh-00-nzH" secondAttribute="bottom" constant="12" id="w9s-1n-2IM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

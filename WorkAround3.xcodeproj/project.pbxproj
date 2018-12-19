@@ -33,6 +33,7 @@
 		EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */; };
 		EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */; };
 		EE4E07231F4EF8B8009FC635 /* GiwonPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071F1F4EF8B8009FC635 /* GiwonPlayButton.swift */; };
+		EE50CC0021CA68B6009F6C50 /* MiniPlayBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50CBFF21CA68B6009F6C50 /* MiniPlayBarController.swift */; };
 		EE529C0C20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE529C0B20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift */; };
 		EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE632660203DA31400347FB8 /* MyPlayItem.swift */; };
 		EE632664203DA7E500347FB8 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */; };
@@ -92,6 +93,7 @@
 		EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPausedView.swift; sourceTree = "<group>"; };
 		EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPlayedView.swift; sourceTree = "<group>"; };
 		EE4E071F1F4EF8B8009FC635 /* GiwonPlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiwonPlayButton.swift; sourceTree = "<group>"; };
+		EE50CBFF21CA68B6009F6C50 /* MiniPlayBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayBarController.swift; sourceTree = "<group>"; };
 		EE529C0B20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayPopupAnimationController.swift; sourceTree = "<group>"; };
 		EE632660203DA31400347FB8 /* MyPlayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlayItem.swift; sourceTree = "<group>"; };
 		EE632663203DA7E500347FB8 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				EE6326692040522500347FB8 /* LaunchViewController.swift */,
 				BEC09031204628C10022E5AD /* MiniPlayBar.swift */,
 				BEC0903320462DCB0022E5AD /* MiniPlayBar.xib */,
+				EE50CBFF21CA68B6009F6C50 /* MiniPlayBarController.swift */,
 			);
 			name = LaunchViewController;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				EEFEA8442164ACC50060C884 /* TopCornersRoundedTableView.swift in Sources */,
 				EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */,
 				EECF1FD72158895700DC2E29 /* ResourceReadingHelper.swift in Sources */,
+				EE50CC0021CA68B6009F6C50 /* MiniPlayBarController.swift in Sources */,
 				EECF1FA82155DF2C00DC2E29 /* CoreDataStack.swift in Sources */,
 				EE1E12912109EDD20071DE2A /* PlayItem+CoreDataProperties.swift in Sources */,
 				EE21D76920C802E100CA8C71 /* AudioPlayerDashboardCell2.swift in Sources */,
