@@ -63,22 +63,30 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     private var mainTabBarController: MainTabBarController!
     private let miniPlayBarHeight: CGFloat = 80
     
-//    @IBOutlet weak var miniPlayBar: MiniPlayBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // embed tab bar controller
         initEmbeddedTabBarController()
-        miniPlayBarController = MiniPlayBarController(hostingView: self.view, bottomInset: mainTabBarController.tabBar.bounds.height)
+        miniPlayBarController = MiniPlayBarController(hostingView: self.view, bottomInset: mainTabBarController.tabBar.bounds.height, audioPlayDelegate:self, settingAudioPlayerDelegate:self)
         
-        
-        // create mini play bar, set delegate
-        miniPlayBarController.miniPlayBar.audioPlayDelegate = self
-        miniPlayBarController.miniPlayBar.settingAudioPlayerDelegate = self
         observerArray.append(miniPlayBarController.miniPlayBar)
         
-        miniPlayBarController.showMiniPlayBarTop()
+        
+        
+        // save what's been newly selected to play in nsuserdefault
+        let recentlyPlayedItemId = UserDefaults.standard.integer(forKey: "CurrentPlayItem")
+
+        // if available?
+        if (recentlyPlayedItemId >= -1) {
+            
+            
+        }
+        
+        
+        
+        miniPlayBarController.showMiniPlayBar()
     }
     
     
@@ -198,10 +206,12 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     }
     
     func triggerMiniPlayBar(sender: AnyObject, playItem: PlayItem) {
-        miniPlayBarController.miniPlayBar.isHidden = false
+        
+        miniPlayBarController.showMiniPlayBar()
         
         if let currentPlayItem = currentPlayItem {
-            miniPlayBarController.miniPlayBar.configureView(playItem: currentPlayItem, isPlaying: audioPlayer.isPlaying)
+            
+            miniPlayBarController.configureMiniPlayBar(with: currentPlayItem, isPlaying: audioPlayer.isPlaying)
         }
         
         
@@ -212,7 +222,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         let playerViewSnapshot = audioPlayerViewController.view.snapshotView(afterScreenUpdates: true)
         let miniPlayBarSnapshot = miniPlayBarController.miniPlayBar.snapshotView(afterScreenUpdates: true)
         
-        playerPopupAnimationController = MiniPlayPopupAnimationController(playerViewSnapshot: playerViewSnapshot!, miniPlayBarSnapshot: miniPlayBarSnapshot!, miniPlayBarSnapshotStartingFrame: miniPlayBarController.miniPlayBar.frame)
+        playerPopupAnimationController = MiniPlayPopupAnimationController(playerViewSnapshot: playerViewSnapshot!, miniPlayBarSnapshot: miniPlayBarSnapshot!, miniPlayBarSnapshotStartingFrame: miniPlayBarController.miniPlayBarFrame())
         
         
         self.present(audioPlayerViewController, animated: true, completion: nil)
