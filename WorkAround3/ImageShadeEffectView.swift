@@ -21,7 +21,7 @@ class ImageShadeEffectView: UIView {
             imgBackgroundLayer.contents = image?.cgImage
         }
     }
-    @IBInspectable var scaleAnimationFactor: CGFloat = 0.5 {
+    @IBInspectable var scaleAnimationFactor: CGFloat = 0.8 {
         didSet {
             reflectViewStatus()
         }

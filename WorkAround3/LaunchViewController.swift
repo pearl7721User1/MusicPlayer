@@ -83,7 +83,12 @@ class LaunchViewController: UIViewController {
 
         // if available?
         if let recentlyPlayedItem = playItemFetcher.playItem(from: recentlyPlayedItemId) {
-            miniPlayBarController.configureMiniPlayBar(with: recentlyPlayedItem, isPlaying: false)
+            self.currentPlayItem = recentlyPlayedItem
+            
+            if let functionHolder = self as? SettingAudioPlayerDelegate {
+                functionHolder.setPlayItem(sender: self, playItem: recentlyPlayedItem)
+                functionHolder.triggerMiniPlayBar(sender: self, playItem: recentlyPlayedItem)
+            }
         }
         
         

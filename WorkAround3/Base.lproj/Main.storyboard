@@ -261,6 +261,11 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yTH-59-GCL" secondAttribute="height" multiplier="1:1" id="t7W-nG-JAB"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="scaleAnimationFactor">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Eq-XE-RHw">
                                 <rect key="frame" x="28" y="519" width="40" height="30"/>
