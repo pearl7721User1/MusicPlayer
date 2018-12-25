@@ -11,7 +11,7 @@ import UIKit
 class MainTabBarController: UITabBarController {
 
     
-    static func newInstance(audioListViewControllerDelegate: SettingAudioPlayerDelegate, audioListViewControllerBottomInset: CGFloat) -> MainTabBarController {
+    static func newInstance(audioListViewControllerDelegate: SettingAudioPlayerDelegate, audioListViewControllerBottomInset: CGFloat, audioListPlayItems: [PlayItem]) -> MainTabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
         
@@ -19,10 +19,10 @@ class MainTabBarController: UITabBarController {
         let audioListViewController = viewControllers[0] as! AudioListViewController
         audioListViewController.tableViewBottomInset = audioListViewControllerBottomInset
         audioListViewController.settingAudioPlayerDelegate = audioListViewControllerDelegate
-        audioListViewController.fetchRequest = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.allPlayItemsFetchRequest
-        audioListViewController.context = (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.viewContext
+        audioListViewController.playItems = audioListPlayItems
         
         return tabBarViewController
     }
+    
     
 }

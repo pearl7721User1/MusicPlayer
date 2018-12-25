@@ -12,9 +12,7 @@ import CoreData
 class AudioListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
-    var fetchRequest: NSFetchRequest<PlayItem>?
-    var context: NSManagedObjectContext?
-    var playItems = [PlayItem]()
+    var playItems: [PlayItem]!
     
     var tableViewBottomInset: CGFloat = 0
     
@@ -23,19 +21,7 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let fetchRequest = fetchRequest,
-            let context = context {
-            do {
-                playItems = try context.fetch(fetchRequest)
-            } catch {
-                print("playItems couldn't be fetched")
-            }
-        } else {
-            print("fetchRequest or context isn't initiated")
-        }
-        
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, tableViewBottomInset, 0)
-
     }
     
     @IBAction func btnTapped(_ sender: UIBarButtonItem) {

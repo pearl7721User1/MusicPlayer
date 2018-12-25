@@ -29,7 +29,7 @@ protocol AudioPlayStatusObserver {
     func update(currentTime: TimeInterval, isPlaying: Bool)
 }
 
-class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioPlayDelegate {
+class LaunchViewController: UIViewController {
     
     // MARK: - Properties, etc
     var audioPlayer = AVAudioPlayer()
@@ -44,8 +44,6 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
 
     private var playerPopupAnimationController: MiniPlayPopupAnimationController?
     
-    // MARK: - View/VC Init
-//    @IBOutlet weak var miniBarBottomConstraint: NSLayoutConstraint!
     
     lazy var audioPlayerViewController: AudioPlayerViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -63,36 +61,38 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     private var mainTabBarController: MainTabBarController!
     private let miniPlayBarHeight: CGFloat = 80
     
+    private var playItemFetcher: PlayItemFetcher!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // fetch play items
+        self.playItemFetcher = PlayItemFetcher(context: (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.viewContext)
+        
+        
         // embed tab bar controller
-        initEmbeddedTabBarController()
+        initEmbeddedTabBarController(with: self.playItemFetcher.playItems())
         miniPlayBarController = MiniPlayBarController(hostingView: self.view, bottomInset: mainTabBarController.tabBar.bounds.height, audioPlayDelegate:self, settingAudioPlayerDelegate:self)
         
         observerArray.append(miniPlayBarController.miniPlayBar)
         
-        
+        miniPlayBarController.showMiniPlayBar()
         
         // save what's been newly selected to play in nsuserdefault
         let recentlyPlayedItemId = UserDefaults.standard.integer(forKey: "CurrentPlayItem")
 
         // if available?
-        if (recentlyPlayedItemId >= -1) {
-            
-            
+        if let recentlyPlayedItem = playItemFetcher.playItem(from: recentlyPlayedItemId) {
+            miniPlayBarController.configureMiniPlayBar(with: recentlyPlayedItem, isPlaying: false)
         }
         
         
-        
-        miniPlayBarController.showMiniPlayBar()
     }
     
     
-    private func initEmbeddedTabBarController(){
+    private func initEmbeddedTabBarController(with playItems: [PlayItem]) {
 
-        self.mainTabBarController = MainTabBarController.newInstance(audioListViewControllerDelegate: self, audioListViewControllerBottomInset: self.miniPlayBarHeight)
+        self.mainTabBarController = MainTabBarController.newInstance(audioListViewControllerDelegate: self, audioListViewControllerBottomInset: self.miniPlayBarHeight, audioListPlayItems: playItems)
         
         // add main tab bar controller
         self.addChildViewController(mainTabBarController)
@@ -105,12 +105,12 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         mainTabBarController.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         mainTabBarController.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        // set launchViewController's view hierarchy
-//        self.view.bringSubview(toFront: self.miniPlayBarController.miniPlayBar)
-        
-        // reposition mini play bar
-//        miniBarBottomConstraint.constant = mainTabBarController.tabBar.bounds.height
     }
+    
+    
+}
+
+extension LaunchViewController: AudioPlayDelegate {
     
     // MARK: - AudioPlayDelegate
     func playOrPause(sender: AnyObject) {
@@ -119,7 +119,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
             
             if (audioPlayer.isPlaying) {
                 audioPlayer.pause()
-
+                
                 timer.invalidate()
                 
                 let currentTime = self.audioPlayer.currentTime
@@ -131,7 +131,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
                 
                 currentPlayItem.playHead = currentTime
                 print(currentPlayItem.playHead)
-
+                
             } else {
                 audioPlayer.play()
                 timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {[unowned self] (timer: Timer) in
@@ -160,7 +160,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     }
     
     func setCurrentTime(sender: AnyObject, currentTime: TimeInterval) {
-        audioPlayer.currentTime = currentTime        
+        audioPlayer.currentTime = currentTime
         currentPlayItem?.playHead = currentTime
         
         for observer in self.observerArray {
@@ -175,7 +175,9 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
     func setPlayRate(sender: AnyObject, playRate: Float) {
         audioPlayer.rate = playRate
     }
-    
+}
+
+extension LaunchViewController: SettingAudioPlayerDelegate {
     
     // MARK: - SettingAudioPlayerDelegate
     func setPlayItem(sender: AnyObject, playItem: PlayItem) {
@@ -195,7 +197,7 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
             print("Could not load file")
             return
         }
-
+        
         currentPlayItem = playItem
         audioPlayer.currentTime = playItem.playHead
         self.playOrPause(sender: self)
@@ -234,7 +236,6 @@ class LaunchViewController: UIViewController, SettingAudioPlayerDelegate, AudioP
         }
         
     }
-    
 }
 
 extension LaunchViewController: UIViewControllerTransitioningDelegate {
