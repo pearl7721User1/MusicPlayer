@@ -20,6 +20,7 @@
 		EE1E12A02111E1810071DE2A /* snap_920.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EE1E12992111E1800071DE2A /* snap_920.mp3 */; };
 		EE1E12A12111E1810071DE2A /* salamander.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EE1E129A2111E1810071DE2A /* salamander.jpg */; };
 		EE1E12A22111E1810071DE2A /* playItems.json in Resources */ = {isa = PBXBuildFile; fileRef = EE1E129B2111E1810071DE2A /* playItems.json */; };
+		EE1FD15121E8DA8100396729 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1FD15021E8DA8100396729 /* DateExtension.swift */; };
 		EE21D76720C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21D76620C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift */; };
 		EE21D76920C802E100CA8C71 /* AudioPlayerDashboardCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21D76820C802E100CA8C71 /* AudioPlayerDashboardCell2.swift */; };
 		EE21D76B20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21D76A20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift */; };
@@ -81,6 +82,7 @@
 		EE1E12992111E1800071DE2A /* snap_920.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snap_920.mp3; sourceTree = "<group>"; };
 		EE1E129A2111E1810071DE2A /* salamander.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = salamander.jpg; sourceTree = "<group>"; };
 		EE1E129B2111E1810071DE2A /* playItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = playItems.json; sourceTree = "<group>"; };
+		EE1FD15021E8DA8100396729 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		EE21D76620C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerDashboardCell1.swift; sourceTree = "<group>"; };
 		EE21D76820C802E100CA8C71 /* AudioPlayerDashboardCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerDashboardCell2.swift; sourceTree = "<group>"; };
 		EE21D76A20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerDashboardCell3.swift; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		EE1FD14F21E8DA5700396729 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				EE1FD15021E8DA8100396729 /* DateExtension.swift */,
+			);
+			name = Date;
+			sourceTree = "<group>";
+		};
 		EE21D76320C7F79A00CA8C71 /* MainWireFrame */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +247,7 @@
 		EEC822ED1F49A365007E3D6C /* WorkAround3 */ = {
 			isa = PBXGroup;
 			children = (
+				EE1FD14F21E8DA5700396729 /* Date */,
 				EE05BCF821D11834007011F9 /* CoreDataRecordsFetching */,
 				EECF1FD62158895700DC2E29 /* ResourceReadingHelper.swift */,
 				EE1E12932111E1400071DE2A /* resources */,
@@ -440,6 +451,7 @@
 				EE8CF7A1205E158300EA9729 /* DimmingPresentationController.swift in Sources */,
 				EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */,
 				EECBA174216256D2006E5FA9 /* MainTabBarController.swift in Sources */,
+				EE1FD15121E8DA8100396729 /* DateExtension.swift in Sources */,
 				EE05BCFA21D1187F007011F9 /* PlayItemFetcher.swift in Sources */,
 				EE1E12902109EDD20071DE2A /* PlayItem+CoreDataClass.swift in Sources */,
 				EE529C0C20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift in Sources */,

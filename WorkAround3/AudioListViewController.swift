@@ -37,10 +37,36 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        if let label = cell.viewWithTag(10) as? UILabel {
+        
+        let playItem = playItems[indexPath.row]
+        
+        // thumbnail
+        if let imageView = cell.viewWithTag(10) as? UIImageView,
+            let imageData = playItem.thumbnail {
             
-            label.text = playItems[indexPath.row].title
+            let image = UIImage(data: imageData as Data)
+            imageView.image = image
+        }
+
+        // published date
+        if let publishedDateLabel = cell.viewWithTag(11) as? UILabel,
+            let publishedDate = playItem.publishedDate {
             
+            publishedDateLabel.text = (publishedDate as Date).string(capitalized: true, withinAWeekFormat: "EEEE", otherDatesFormat: "d MMM yyyy")
+        }
+        
+        // title
+        if let titleLabel = cell.viewWithTag(12) as? UILabel,
+            let title = playItem.title {
+            
+            titleLabel.text = title
+        }
+        
+        // description
+        if let descriptionLabel = cell.viewWithTag(13) as? UILabel,
+            let description = playItem.desc {
+            
+            descriptionLabel.text = description
         }
         
         return cell
