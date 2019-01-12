@@ -20,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         coreDataStack = CoreDataStack()
         
+        guard let launchViewController = window?.rootViewController as? LaunchViewController else {
+            fatalError()
+        }
+        
+        launchViewController.coreDataStack = coreDataStack
+        launchViewController.context = coreDataStack.persistentContainer.viewContext
+        
         return true
     }
 

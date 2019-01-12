@@ -28,28 +28,4 @@ extension PlayItem {
     @NSManaged public var id: Int16
 
 
-    static func samplePlayItems(context: NSManagedObjectContext) -> [PlayItem]? {
-    
-        let playItems = ResourceReadingHelper.readPlayItemJsonFile(context: context)
-        return playItems
-    }
-
-    
-    static func playItem(context: NSManagedObjectContext, title: String, thumbnail: UIImage, duration: Double, showname: String, publishedDate: Date, playHead: Double, desc: String, fileName: String) -> PlayItem {
-        
-        let playItem = PlayItem(context: context)
-        playItem.title = title
-        playItem.thumbnail = UIImagePNGRepresentation(thumbnail)! as NSData
-        playItem.duration = duration
-        playItem.showname = showname
-        playItem.publishedDate = publishedDate as NSDate
-        playItem.playHead = playHead
-        playItem.desc = desc
-        playItem.fileName = fileName
-        
-        return playItem
-    }
-    
-    
-
 }

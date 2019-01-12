@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 protocol AudioPlayDelegate {
     func playOrPause(sender: AnyObject)
@@ -61,17 +62,15 @@ class LaunchViewController: UIViewController {
     private var mainTabBarController: MainTabBarController!
     private let miniPlayBarHeight: CGFloat = 80
     
-    private var playItemFetcher: PlayItemFetcher!
+    // MARK: - Core Data
+    var context: NSManagedObjectContext!
+    var coreDataStack: CoreDataStack!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // fetch play items
-        self.playItemFetcher = PlayItemFetcher(context: (UIApplication.shared.delegate as! AppDelegate).coreDataStack.persistentContainer.viewContext)
-        
-        
         // embed tab bar controller
-        initEmbeddedTabBarController(with: self.playItemFetcher.playItems())
+        initEmbeddedTabBarController(with: self.coreDataStack.allPlayItems(context: self.context))
         miniPlayBarController = MiniPlayBarController(hostingView: self.view, bottomInset: mainTabBarController.tabBar.bounds.height, audioPlayDelegate:self, settingAudioPlayerDelegate:self)
         
         observerArray.append(miniPlayBarController.miniPlayBar)
@@ -82,7 +81,8 @@ class LaunchViewController: UIViewController {
         let recentlyPlayedItemId = UserDefaults.standard.integer(forKey: "CurrentPlayItem")
 
         // if available?
-        if let recentlyPlayedItem = playItemFetcher.playItem(from: recentlyPlayedItemId) {
+        
+        if let recentlyPlayedItem = self.coreDataStack.playItem(of: recentlyPlayedItemId, context: self.context) {
             self.currentPlayItem = recentlyPlayedItem
             
             if let functionHolder = self as? SettingAudioPlayerDelegate {

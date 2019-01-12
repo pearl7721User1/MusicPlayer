@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BEC09032204628C10022E5AD /* MiniPlayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC09031204628C10022E5AD /* MiniPlayBar.swift */; };
 		BEC0903420462DCB0022E5AD /* MiniPlayBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC0903320462DCB0022E5AD /* MiniPlayBar.xib */; };
-		EE05BCFA21D1187F007011F9 /* PlayItemFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05BCF921D1187F007011F9 /* PlayItemFetcher.swift */; };
 		EE1E12892109EC380071DE2A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EE1E12872109EC380071DE2A /* Model.xcdatamodeld */; };
 		EE1E12902109EDD20071DE2A /* PlayItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E128E2109EDD20071DE2A /* PlayItem+CoreDataClass.swift */; };
 		EE1E12912109EDD20071DE2A /* PlayItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1E128F2109EDD20071DE2A /* PlayItem+CoreDataProperties.swift */; };
@@ -71,7 +70,6 @@
 /* Begin PBXFileReference section */
 		BEC09031204628C10022E5AD /* MiniPlayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayBar.swift; sourceTree = "<group>"; };
 		BEC0903320462DCB0022E5AD /* MiniPlayBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniPlayBar.xib; sourceTree = "<group>"; };
-		EE05BCF921D1187F007011F9 /* PlayItemFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayItemFetcher.swift; sourceTree = "<group>"; };
 		EE1E12882109EC380071DE2A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		EE1E128E2109EDD20071DE2A /* PlayItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EE1E128F2109EDD20071DE2A /* PlayItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 		EE05BCF821D11834007011F9 /* CoreDataRecordsFetching */ = {
 			isa = PBXGroup;
 			children = (
-				EE05BCF921D1187F007011F9 /* PlayItemFetcher.swift */,
 			);
 			name = CoreDataRecordsFetching;
 			sourceTree = "<group>";
@@ -452,7 +449,6 @@
 				EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */,
 				EECBA174216256D2006E5FA9 /* MainTabBarController.swift in Sources */,
 				EE1FD15121E8DA8100396729 /* DateExtension.swift in Sources */,
-				EE05BCFA21D1187F007011F9 /* PlayItemFetcher.swift in Sources */,
 				EE1E12902109EDD20071DE2A /* PlayItem+CoreDataClass.swift in Sources */,
 				EE529C0C20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift in Sources */,
 				BEC09032204628C10022E5AD /* MiniPlayBar.swift in Sources */,

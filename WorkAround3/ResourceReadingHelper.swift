@@ -10,6 +10,26 @@ import UIKit
 import CoreData
 
 class ResourceReadingHelper {
+    
+    static func playItemDictArray() -> [[String: Any]]? {
+        let path = Bundle.main.path(forResource: "playItems", ofType: "json")
+        
+        guard let contentsString = try? String(contentsOfFile: path!),
+            let contentsInDataType = contentsString.data(using: .utf8) else {
+            print("couldn't find contents")
+            return nil
+        }
+        
+        guard let jsonAnyResult = try? JSONSerialization.jsonObject(with: contentsInDataType, options: []),
+            let jsonDict = jsonAnyResult as? [String: Any] else {
+            print("couldn't serialize")
+            return nil
+        }
+        
+        return jsonDict["sample_mp3s"] as? [[String:AnyObject]]
+    }
+    
+    /*
     static func readPlayItemJsonFile(context: NSManagedObjectContext) -> [PlayItem]? {
         let path = Bundle.main.path(forResource: "playItems", ofType: "json")
         
@@ -70,15 +90,5 @@ class ResourceReadingHelper {
         
         return playItems
     }
-    
-    static private func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
+    */
 }
