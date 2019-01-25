@@ -16,7 +16,11 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
 
     @IBOutlet var contentView: UIView!
     var viewPresentationDelegate: AudioPlayAssociatedViewsPresentationDelegate?
-    var audioPlayerController: AudioPlayerController!
+    var audioPlayerController: AudioPlayerController! {
+        didSet {
+            configureView()
+        }
+    }
     
     @IBOutlet weak var imageView: ImageShadeEffectView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -29,7 +33,7 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        fatalError()
+        commonInit()
     }
     
     func commonInit() {
@@ -46,22 +50,25 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
         contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        // configure item
-        if let currentPlayItem = self.audioPlayerController.currentPlayItem {
-            configureView(playItem: currentPlayItem, isPlaying: self.audioPlayerController.audioPlayer.isPlaying)
-        }
+        
     }
     
-    func configureView(playItem: PlayItem, isPlaying:Bool) {
-        
-        if let imageData = playItem.thumbnail,
-            let image = UIImage(data: imageData as Data) {
-            imageView.image = image
+    func configureView() {
+        // configure item
+        if let playItem = self.audioPlayerController.currentPlayItem {
+            
+            if let imageData = playItem.thumbnail,
+                let image = UIImage(data: imageData as Data) {
+                imageView.image = image
+                
+            }
+            
             imageView.isScaledUp = false
             titleLabel.text = playItem.title
         }
         
-        titleLabel.text = playItem.title
+        
+        let isPlaying = self.audioPlayerController.isPlaying()
         
         // TODO: - set play button
         if isPlaying {
@@ -69,6 +76,7 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
         } else {
             playButton.setImage(UIImage(named:"play.png")!, for: .normal)
         }
+        
     }
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {

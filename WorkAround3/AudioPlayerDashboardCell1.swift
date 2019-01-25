@@ -27,9 +27,9 @@ class AudioPlayerDashboardCell1: UITableViewCell {
         
         if let playItem = self.audioPlayerController.currentPlayItem {
             
-            let isPlaying = self.audioPlayerController.audioPlayer.isPlaying
-            let volume = self.audioPlayerController.audioPlayer.volume
-            let rate = self.audioPlayerController.audioPlayer.rate
+            let isPlaying = self.audioPlayerController.isPlaying()
+            let volume = self.audioPlayerController.volume()
+            let rate = self.audioPlayerController.rate()
             let currentTime = playItem.playHead
             let duration = playItem.duration
             let imageData = playItem.thumbnail

@@ -10,24 +10,25 @@ import UIKit
 import AVFoundation
 
 class AudioPlayerController {
-
     
-    var audioPlayer = AVAudioPlayer()
+    private var audioPlayer: AVAudioPlayer?
     var currentPlayItem: PlayItem?
     private var timer = Timer()
     
     private var observerArray = [AudioPlayStatusObserver]()
     
     func playOrPause(sender: AnyObject) {
-        if let currentPlayItem = currentPlayItem {
+        
+        if let audioPlayer = audioPlayer,
+            let currentPlayItem = currentPlayItem {
             
             if (audioPlayer.isPlaying) {
                 audioPlayer.pause()
                 
                 timer.invalidate()
                 
-                let currentTime = self.audioPlayer.currentTime
-                let isPlaying = self.audioPlayer.isPlaying
+                let currentTime = audioPlayer.currentTime
+                let isPlaying = audioPlayer.isPlaying
                 
                 for observer in self.observerArray {
                     observer.update(currentTime: currentTime, isPlaying: isPlaying)
@@ -40,8 +41,8 @@ class AudioPlayerController {
                 audioPlayer.play()
                 timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {[unowned self] (timer: Timer) in
                     
-                    let currentTime = self.audioPlayer.currentTime
-                    let isPlaying = self.audioPlayer.isPlaying
+                    let currentTime = audioPlayer.currentTime
+                    let isPlaying = audioPlayer.isPlaying
                     
                     for observer in self.observerArray {
                         observer.update(currentTime: currentTime, isPlaying: isPlaying)
@@ -57,28 +58,35 @@ class AudioPlayerController {
     }
     
     func movePlayHeadBackward(sender: AnyObject) {
-        audioPlayer.currentTime = audioPlayer.currentTime - 1
+        
+        if let audioPlayer = self.audioPlayer {
+            audioPlayer.currentTime = audioPlayer.currentTime - 1
+        }
+        
     }
     
     func movePlayHeadForward(sender: AnyObject) {
-        audioPlayer.currentTime = audioPlayer.currentTime + 1
-    }
-    
-    func setCurrentTime(sender: AnyObject, currentTime: TimeInterval) {
-        audioPlayer.currentTime = currentTime
-        currentPlayItem?.playHead = currentTime
-        
-        for observer in self.observerArray {
-            observer.update(currentTime: currentTime, isPlaying: audioPlayer.isPlaying)
+        if let audioPlayer = self.audioPlayer {
+            audioPlayer.currentTime = audioPlayer.currentTime + 1
         }
     }
     
+    func setCurrentTime(sender: AnyObject, currentTime: TimeInterval) {
+        audioPlayer?.currentTime = currentTime
+        currentPlayItem?.playHead = currentTime
+        /*
+        for observer in self.observerArray {
+            observer.update(currentTime: currentTime, isPlaying: audioPlayer?.isPlaying)
+        }
+ */
+    }
+    
     func setVolume(sender: AnyObject, volume: Float) {
-        audioPlayer.volume = volume
+        audioPlayer?.volume = volume
     }
     
     func setPlayRate(sender: AnyObject, playRate: Float) {
-        audioPlayer.rate = playRate
+        audioPlayer?.rate = playRate
     }
     
     func setPlayItem(sender: AnyObject, playItem: PlayItem) {
@@ -100,11 +108,24 @@ class AudioPlayerController {
         }
         
         currentPlayItem = playItem
-        audioPlayer.currentTime = playItem.playHead
+        audioPlayer?.currentTime = playItem.playHead
         self.playOrPause(sender: self)
         
         
         // save what's been newly selected to play in nsuserdefault
         UserDefaults.standard.set(playItem.id, forKey: "CurrentPlayItem")
     }
+    
+    func isPlaying() -> Bool {
+        return self.audioPlayer?.isPlaying ?? false
+    }
+    
+    func volume() -> Float {
+        return self.audioPlayer?.volume ?? 0.0
+    }
+    
+    func rate() -> Float {
+        return self.audioPlayer?.rate ?? 0.0
+    }
+ 
 }
