@@ -9,12 +9,6 @@
 import UIKit
 import AVFoundation
 
-protocol AudioPlayerAccessDelegate {
-    
-    var audioPlayer: AVAudioPlayer {get}
-    func update(playHead value: Float)
-}
-
 class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AudioPlayStatusObserver {
     
     @IBOutlet var dashboardCell1: AudioPlayerDashboardCell1!
@@ -22,18 +16,11 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var dashboardCell3: AudioPlayerDashboardCell3!
     @IBOutlet weak var tableView: TopCornersRoundedTableView!
     
-    var audioPlayDelegate: AudioPlayDelegate? {
-        didSet {
-            self.dashboardCell1.audioPlayDelegate = audioPlayDelegate
-        }
-    }
+    var audioPlayerController: AudioPlayerController!
     
     @IBOutlet var tableHeaderView: UIView!
     let heightOfCell2: CGFloat = 60
     let heightOfCell3: CGFloat = 50
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +28,9 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
         NotificationCenter.default.addObserver(self, selector: #selector(statusBarTapped), name: NSNotification.Name(rawValue: "statusBarTapped"), object: nil)
         
         tableView.tableHeaderView = tableHeaderView
+        
+        dashboardCell1.audioPlayerController = self.audioPlayerController
+        dashboardCell1.configureView()
     }
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
@@ -48,10 +38,10 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
         dismiss(animated: true, completion: nil)
     }
     
-    func statusBarTapped() {
+    @objc func statusBarTapped() {
         dismiss(animated: true, completion: nil)
     }
-    
+    /*
     func configureView(playItem: PlayItem, isPlaying: Bool, volume: Float, rate: Float) {
         
         var image: UIImage?
@@ -61,6 +51,7 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
         
         dashboardCell1.configureView(isPlaying: isPlaying, volume: volume, rate: rate, currentTime: playItem.playHead, duration: playItem.duration, image:image)
     }
+    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

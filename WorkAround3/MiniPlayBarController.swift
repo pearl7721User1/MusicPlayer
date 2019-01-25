@@ -14,14 +14,14 @@ class MiniPlayBarController: NSObject {
     private var bottomInset: CGFloat = 0
     private var bottomAnchorConstraint: NSLayoutConstraint!
     
+    
     var miniPlayBar = MiniPlayBar(frame: CGRect.zero)
     
-    init(hostingView: UIView, bottomInset:CGFloat, audioPlayDelegate: AudioPlayDelegate, settingAudioPlayerDelegate: SettingAudioPlayerDelegate) {
+    init(hostingView: UIView, bottomInset:CGFloat, viewPresentationDelegate: AudioPlayAssociatedViewsPresentationDelegate, audioPlayerController: AudioPlayerController) {
         self.hostingView = hostingView
         self.bottomInset = bottomInset
-        
-        miniPlayBar.audioPlayDelegate = audioPlayDelegate
-        miniPlayBar.settingAudioPlayerDelegate = settingAudioPlayerDelegate
+        miniPlayBar.audioPlayerController = audioPlayerController        
+        miniPlayBar.viewPresentationDelegate = viewPresentationDelegate
         
         hostingView.addSubview(miniPlayBar)
         miniPlayBar.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +32,7 @@ class MiniPlayBarController: NSObject {
         bottomAnchorConstraint.isActive = true
         
         miniPlayBar.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
     }
     
     func showMiniPlayBar() {
@@ -42,10 +43,6 @@ class MiniPlayBarController: NSObject {
             self.hostingView.layoutIfNeeded()
         }, completion: nil)
         
-    }
-    
-    func configureMiniPlayBar(with playItem: PlayItem, isPlaying: Bool) {
-        miniPlayBar.configureView(playItem: playItem, isPlaying: isPlaying)
     }
     
     func snapShot() -> UIView? {

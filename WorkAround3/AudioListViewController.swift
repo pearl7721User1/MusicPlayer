@@ -11,8 +11,9 @@ import CoreData
 
 class AudioListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
+    var viewPresentationDelegate: AudioPlayAssociatedViewsPresentationDelegate?
     var playItems: [PlayItem]!
+    var audioPlayerController: AudioPlayerController!
     
     var tableViewBottomInset: CGFloat = 0
     
@@ -80,12 +81,12 @@ class AudioListViewController: UIViewController, UITableViewDataSource, UITableV
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let delegate = settingAudioPlayerDelegate else {
+        guard let delegate = viewPresentationDelegate else {
             return
         }
 
-        delegate.setPlayItem(sender: self, playItem: playItems[indexPath.row])
-        delegate.triggerMiniPlayBar(sender: self, playItem: playItems[indexPath.row])
+        audioPlayerController.setPlayItem(sender: self, playItem: playItems[indexPath.row])
+        delegate.triggerMiniPlayBar(sender: self)
 
     }
     

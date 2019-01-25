@@ -15,10 +15,8 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     
 
     @IBOutlet var contentView: UIView!
-    var audioPlayDelegate: AudioPlayDelegate?
-    var settingAudioPlayerDelegate: SettingAudioPlayerDelegate?
-    var playItem: PlayItem?
-    
+    var viewPresentationDelegate: AudioPlayAssociatedViewsPresentationDelegate?
+    var audioPlayerController: AudioPlayerController!
     
     @IBOutlet weak var imageView: ImageShadeEffectView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -31,7 +29,7 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
+        fatalError()
     }
     
     func commonInit() {
@@ -47,10 +45,14 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
         contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        // configure item
+        if let currentPlayItem = self.audioPlayerController.currentPlayItem {
+            configureView(playItem: currentPlayItem, isPlaying: self.audioPlayerController.audioPlayer.isPlaying)
+        }
     }
     
-    func configureView(playItem: PlayItem, isPlaying: Bool) {
-        self.playItem = playItem
+    func configureView(playItem: PlayItem, isPlaying:Bool) {
         
         if let imageData = playItem.thumbnail,
             let image = UIImage(data: imageData as Data) {
@@ -71,23 +73,18 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         
-        if let delegate = settingAudioPlayerDelegate,
-            let playItem = playItem {
-            delegate.triggerAudioPlayerViewController(sender: self, playItem: playItem)
+        if let delegate = viewPresentationDelegate {
+            delegate.triggerAudioPlayerViewController(sender: self)
         }
         
     }
     
     @IBAction func fastForwardBtnTapped(_ sender: UIButton) {
-        if let delegate = audioPlayDelegate {
-            delegate.movePlayHeadForward(sender: self)
-        }
+        self.audioPlayerController.movePlayHeadForward(sender: self)
     }
     
     @IBAction func playBtnTapped(_ sender: UIButton) {
-        if let delegate = audioPlayDelegate {
-            delegate.playOrPause(sender: self)
-        }
+        self.audioPlayerController.playOrPause(sender: self)
     }
     
     
