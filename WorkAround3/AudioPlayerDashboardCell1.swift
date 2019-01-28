@@ -12,24 +12,77 @@ import AVFoundation
 
 class AudioPlayerDashboardCell1: UITableViewCell {
 
-    var audioPlayerController: AudioPlayerController!
+    @objc var audioPlayerController: AudioPlayerController! {
+        didSet {
+            configureView()
+            registerObservers()
+        }
+    }
     
     @IBOutlet weak var playItemImageView: ImageShadeEffectView!
     @IBOutlet weak var playHeadSlider: UISlider!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var currentPlayTimeLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var playButton: GHeadTailButton!
     
     @IBOutlet weak var rateButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
+    
+    var observationForIsPlaying: NSKeyValueObservation?
+    var observationForCurrentTime: NSKeyValueObservation?
+    var observationForVolume: NSKeyValueObservation?
+    var observationForRate: NSKeyValueObservation?
+    
+    private func registerObservers() {
+        
+        self.observationForCurrentTime = observe(\.audioPlayerController.currentTime,
+                                                 options: [.new], changeHandler:
+            { object, change in
+                // do something
+                if let currentTime = change.newValue {
+                    self.reflectCurrentTime(currentTime: currentTime)
+                }
+        })
+        
+        self.observationForIsPlaying =
+            observe(\.audioPlayerController.isPlaying,
+                                                 options: [.new], changeHandler:
+                { object, change in
+                    // do something
+                    if let isPlaying = change.newValue {
+                        self.reflectIsPlaying(isPlaying: isPlaying)
+                    }
+        })
+        
+        self.observationForVolume = observe(\.audioPlayerController.volume,
+                                                 options: [.new], changeHandler:
+            { object, change in
+                // do something
+                if let volume = change.newValue {
+                    self.reflectVolume(volume: volume)
+                }
+                
+        })
+        
+        self.observationForRate = observe(\.audioPlayerController.rate,
+                                                 options: [.new], changeHandler:
+            { object, change in
+                // do something
+                if let rate = change.newValue {
+                    self.reflectRate(rate: rate)
+                }
+        })
+        
+    }
+    
     
     func configureView() {
         
         if let playItem = self.audioPlayerController.currentPlayItem {
             
-            let isPlaying = self.audioPlayerController.isPlaying()
-            let volume = self.audioPlayerController.volume()
-            let rate = self.audioPlayerController.rate()
+            let isPlaying = self.audioPlayerController.isPlaying
+            let volume = self.audioPlayerController.volume
+            let rate = self.audioPlayerController.rate
             let currentTime = playItem.playHead
             let duration = playItem.duration
             let imageData = playItem.thumbnail
@@ -46,11 +99,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
             currentPlayTimeLabel.text = String(format:"%.0f", currentTime.rounded(.toNearestOrAwayFromZero))
             
             // set play button
-            if isPlaying {
-                playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
-            } else {
-                playButton.setImage(UIImage(named:"play.png")!, for: .normal)
-            }
+            playButton.showIcon(isHead: !isPlaying)
             
             // set volume slide value
             volumeSlider.minimumValue = 0
@@ -123,55 +172,30 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     @IBAction func volumeValueChanged(_ sender: UISlider) {
         
         self.audioPlayerController.setVolume(sender: self, volume: sender.value / 100.0)
-    }
+    }    
     
-    /*
-    func updateUI() {
-        
-        
-        if let audioPlayer = audioPlayer {
-            
-            // audio play button image
-            if audioPlayer.isPlaying {
-                playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
-            } else {
-                playButton.setImage(UIImage(named:"play.png")!, for: .normal)
-            }
-            
-//            print("original:\(audioPlayer.currentTime)")
-//            print("down:\(audioPlayer.currentTime.rounded(.toNearestOrAwayFromZero))")
-            
-            // playtime
-            currentPlayTimeLabel.text = String(format:"%.0f", audioPlayer.currentTime.rounded(.toNearestOrAwayFromZero))
-            
-            // rate
-            rateButton.setTitle(String(format:"%.0f", audioPlayer.rate), for: .normal)
-            
-            // volume
-            volumeSlider.value = audioPlayer.volume * 100
-            
-            // playhead
-            playHeadSlider.setValue(Float(audioPlayer.currentTime.rounded(.toNearestOrAwayFromZero)), animated: false)
-        }
-    }
-    */
-    
-    func update(currentTime: TimeInterval, isPlaying: Bool) {
+    private func reflectCurrentTime(currentTime: TimeInterval) {
         
         // set play head slider value
         playHeadSlider.setValue(Float(currentTime.rounded(.toNearestOrAwayFromZero)), animated: false)
         
         // set play head label
         currentPlayTimeLabel.text = String(format:"%.0f", currentTime.rounded(.toNearestOrAwayFromZero))
-        
+    }
+    
+    private func reflectIsPlaying(isPlaying: Bool) {
         // set play button
-        if isPlaying {
-            playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
-        } else {
-            playButton.setImage(UIImage(named:"play.png")!, for: .normal)
-        }
+        playButton.showIcon(isHead: !isPlaying)
         
         // set image
         playItemImageView.isScaledUp = isPlaying
+    }
+    
+    private func reflectVolume(volume: Float) {
+        
+    }
+    
+    private func reflectRate(rate: Float) {
+        
     }
 }

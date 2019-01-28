@@ -30,10 +30,6 @@
 		EE21D79820CB50D400CA8C71 /* lowvolume.png in Resources */ = {isa = PBXBuildFile; fileRef = EE21D79220CB50D300CA8C71 /* lowvolume.png */; };
 		EE21D79920CB50D400CA8C71 /* replay.png in Resources */ = {isa = PBXBuildFile; fileRef = EE21D79320CB50D300CA8C71 /* replay.png */; };
 		EE21D79B20CCD46A00CA8C71 /* Hooded.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EE21D79A20CCD46A00CA8C71 /* Hooded.mp3 */; };
-		EE4E07201F4EF8B8009FC635 /* FlickerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071C1F4EF8B8009FC635 /* FlickerButtonView.swift */; };
-		EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */; };
-		EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */; };
-		EE4E07231F4EF8B8009FC635 /* GiwonPlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4E071F1F4EF8B8009FC635 /* GiwonPlayButton.swift */; };
 		EE50CC0021CA68B6009F6C50 /* MiniPlayBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE50CBFF21CA68B6009F6C50 /* MiniPlayBarController.swift */; };
 		EE529C0C20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE529C0B20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift */; };
 		EE632661203DA31400347FB8 /* MyPlayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE632660203DA31400347FB8 /* MyPlayItem.swift */; };
@@ -42,6 +38,9 @@
 		EE74EEE121C4C3A600D89FFF /* ImageShadeEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE74EEE021C4C3A600D89FFF /* ImageShadeEffectView.swift */; };
 		EE8CF7A1205E158300EA9729 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8CF7A0205E158300EA9729 /* DimmingPresentationController.swift */; };
 		EEB0C03521FAE315003B2A55 /* AudioPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0C03421FAE315003B2A55 /* AudioPlayerController.swift */; };
+		EEB0C03721FF33A7003B2A55 /* GHeadTailButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0C03621FF33A6003B2A55 /* GHeadTailButton.swift */; };
+		EEB0C03A21FF3AB4003B2A55 /* backward.PNG in Resources */ = {isa = PBXBuildFile; fileRef = EEB0C03821FF3AB3003B2A55 /* backward.PNG */; };
+		EEB0C03B21FF3AB4003B2A55 /* forward.PNG in Resources */ = {isa = PBXBuildFile; fileRef = EEB0C03921FF3AB3003B2A55 /* forward.PNG */; };
 		EEC822EF1F49A365007E3D6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC822EE1F49A365007E3D6C /* AppDelegate.swift */; };
 		EEC822F11F49A365007E3D6C /* AudioListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC822F01F49A365007E3D6C /* AudioListViewController.swift */; };
 		EEC822F41F49A365007E3D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEC822F21F49A365007E3D6C /* Main.storyboard */; };
@@ -92,10 +91,6 @@
 		EE21D79220CB50D300CA8C71 /* lowvolume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lowvolume.png; sourceTree = "<group>"; };
 		EE21D79320CB50D300CA8C71 /* replay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = replay.png; sourceTree = "<group>"; };
 		EE21D79A20CCD46A00CA8C71 /* Hooded.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Hooded.mp3; sourceTree = "<group>"; };
-		EE4E071C1F4EF8B8009FC635 /* FlickerButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerButtonView.swift; sourceTree = "<group>"; };
-		EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPausedView.swift; sourceTree = "<group>"; };
-		EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasbeenPlayedView.swift; sourceTree = "<group>"; };
-		EE4E071F1F4EF8B8009FC635 /* GiwonPlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiwonPlayButton.swift; sourceTree = "<group>"; };
 		EE50CBFF21CA68B6009F6C50 /* MiniPlayBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayBarController.swift; sourceTree = "<group>"; };
 		EE529C0B20692BA0001B9EE9 /* MiniPlayPopupAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayPopupAnimationController.swift; sourceTree = "<group>"; };
 		EE632660203DA31400347FB8 /* MyPlayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPlayItem.swift; sourceTree = "<group>"; };
@@ -104,6 +99,9 @@
 		EE74EEE021C4C3A600D89FFF /* ImageShadeEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageShadeEffectView.swift; sourceTree = "<group>"; };
 		EE8CF7A0205E158300EA9729 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		EEB0C03421FAE315003B2A55 /* AudioPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerController.swift; sourceTree = "<group>"; };
+		EEB0C03621FF33A6003B2A55 /* GHeadTailButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GHeadTailButton.swift; sourceTree = "<group>"; };
+		EEB0C03821FF3AB3003B2A55 /* backward.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backward.PNG; sourceTree = "<group>"; };
+		EEB0C03921FF3AB3003B2A55 /* forward.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.PNG; sourceTree = "<group>"; };
 		EEC822EB1F49A365007E3D6C /* WorkAround3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkAround3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEC822EE1F49A365007E3D6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEC822F01F49A365007E3D6C /* AudioListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioListViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +169,8 @@
 				EE21D79220CB50D300CA8C71 /* lowvolume.png */,
 				EE21D79320CB50D300CA8C71 /* replay.png */,
 				EE21D79A20CCD46A00CA8C71 /* Hooded.mp3 */,
+				EEB0C03821FF3AB3003B2A55 /* backward.PNG */,
+				EEB0C03921FF3AB3003B2A55 /* forward.PNG */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -199,10 +199,7 @@
 		EE4E07241F4EF8C0009FC635 /* PlayButton */ = {
 			isa = PBXGroup;
 			children = (
-				EE4E071C1F4EF8B8009FC635 /* FlickerButtonView.swift */,
-				EE4E071D1F4EF8B8009FC635 /* HasbeenPausedView.swift */,
-				EE4E071E1F4EF8B8009FC635 /* HasbeenPlayedView.swift */,
-				EE4E071F1F4EF8B8009FC635 /* GiwonPlayButton.swift */,
+				EEB0C03621FF33A6003B2A55 /* GHeadTailButton.swift */,
 			);
 			name = PlayButton;
 			sourceTree = "<group>";
@@ -404,10 +401,12 @@
 				EE1E129E2111E1810071DE2A /* salamander.mp3 in Resources */,
 				EE1E129C2111E1810071DE2A /* technology.mp3 in Resources */,
 				EEC822F91F49A365007E3D6C /* LaunchScreen.storyboard in Resources */,
+				EEB0C03B21FF3AB4003B2A55 /* forward.PNG in Resources */,
 				EE1E12A22111E1810071DE2A /* playItems.json in Resources */,
 				EE21D79620CB50D400CA8C71 /* pause.png in Resources */,
 				EEC822F61F49A365007E3D6C /* Assets.xcassets in Resources */,
 				EE21D79B20CCD46A00CA8C71 /* Hooded.mp3 in Resources */,
+				EEB0C03A21FF3AB4003B2A55 /* backward.PNG in Resources */,
 				EE21D79420CB50D400CA8C71 /* airplay.png in Resources */,
 				EE21D79820CB50D400CA8C71 /* lowvolume.png in Resources */,
 				EE1E12A02111E1810071DE2A /* snap_920.mp3 in Resources */,
@@ -437,24 +436,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE4E07231F4EF8B8009FC635 /* GiwonPlayButton.swift in Sources */,
 				EE63266A2040522500347FB8 /* LaunchViewController.swift in Sources */,
 				EEB0C03521FAE315003B2A55 /* AudioPlayerController.swift in Sources */,
 				EE21D76720C7FFDE00CA8C71 /* AudioPlayerDashboardCell1.swift in Sources */,
 				EE632664203DA7E500347FB8 /* AudioPlayerViewController.swift in Sources */,
 				EEC822F11F49A365007E3D6C /* AudioListViewController.swift in Sources */,
 				EE74EEE121C4C3A600D89FFF /* ImageShadeEffectView.swift in Sources */,
-				EE4E07221F4EF8B8009FC635 /* HasbeenPlayedView.swift in Sources */,
 				EE1E12892109EC380071DE2A /* Model.xcdatamodeld in Sources */,
 				EEFEA8442164ACC50060C884 /* TopCornersRoundedTableView.swift in Sources */,
-				EE4E07211F4EF8B8009FC635 /* HasbeenPausedView.swift in Sources */,
 				EECF1FD72158895700DC2E29 /* ResourceReadingHelper.swift in Sources */,
 				EE50CC0021CA68B6009F6C50 /* MiniPlayBarController.swift in Sources */,
 				EECF1FA82155DF2C00DC2E29 /* CoreDataStack.swift in Sources */,
 				EE1E12912109EDD20071DE2A /* PlayItem+CoreDataProperties.swift in Sources */,
+				EEB0C03721FF33A7003B2A55 /* GHeadTailButton.swift in Sources */,
 				EE21D76920C802E100CA8C71 /* AudioPlayerDashboardCell2.swift in Sources */,
 				EEC822EF1F49A365007E3D6C /* AppDelegate.swift in Sources */,
-				EE4E07201F4EF8B8009FC635 /* FlickerButtonView.swift in Sources */,
 				EECBA176216257A9006E5FA9 /* AudioListNavigationController.swift in Sources */,
 				EE21D76B20C802EF00CA8C71 /* AudioPlayerDashboardCell3.swift in Sources */,
 				EE8CF7A1205E158300EA9729 /* DimmingPresentationController.swift in Sources */,

@@ -17,10 +17,10 @@ class MiniPlayBarController: NSObject {
     
     var miniPlayBar = MiniPlayBar(frame: CGRect.zero)
     
-    init(hostingView: UIView, bottomInset:CGFloat, viewPresentationDelegate: AudioPlayAssociatedViewsPresentationDelegate, audioPlayerController: AudioPlayerController) {
+    init(hostingView: UIView, bottomInset:CGFloat, viewPresentationDelegate: AudioPlayAssociatedViewsPresentationDelegate) {
         self.hostingView = hostingView
         self.bottomInset = bottomInset
-        miniPlayBar.audioPlayerController = audioPlayerController        
+        
         miniPlayBar.viewPresentationDelegate = viewPresentationDelegate
         
         hostingView.addSubview(miniPlayBar)
@@ -44,6 +44,12 @@ class MiniPlayBarController: NSObject {
         }, completion: nil)
         
     }
+    
+    func setAudioPlayControllerToMiniPlayBar(audioPlayerController: AudioPlayerController) {
+        
+        miniPlayBar.audioPlayerController = audioPlayerController
+    }
+    
     
     func snapShot() -> UIView? {
         return miniPlayBar.snapshotView(afterScreenUpdates: true)

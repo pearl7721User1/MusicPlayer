@@ -9,14 +9,18 @@
 import UIKit
 import AVFoundation
 
-class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AudioPlayStatusObserver {
+class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var dashboardCell1: AudioPlayerDashboardCell1!
     @IBOutlet var dashboardCell2: AudioPlayerDashboardCell2!
     @IBOutlet var dashboardCell3: AudioPlayerDashboardCell3!
     @IBOutlet weak var tableView: TopCornersRoundedTableView!
     
-    var audioPlayerController: AudioPlayerController!
+    var audioPlayerController: AudioPlayerController! {
+        didSet {
+            self.dashboardCell1.audioPlayerController = self.audioPlayerController
+        }
+    }
     
     @IBOutlet var tableHeaderView: UIView!
     let heightOfCell2: CGFloat = 60
@@ -28,9 +32,6 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
         NotificationCenter.default.addObserver(self, selector: #selector(statusBarTapped), name: NSNotification.Name(rawValue: "statusBarTapped"), object: nil)
         
         tableView.tableHeaderView = tableHeaderView
-        
-        dashboardCell1.audioPlayerController = self.audioPlayerController
-        dashboardCell1.configureView()
     }
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
@@ -39,19 +40,9 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     @objc func statusBarTapped() {
+        
         dismiss(animated: true, completion: nil)
     }
-    /*
-    func configureView(playItem: PlayItem, isPlaying: Bool, volume: Float, rate: Float) {
-        
-        var image: UIImage?
-        if let imageData = playItem.thumbnail {
-            image = UIImage(data: imageData as Data)
-        }
-        
-        dashboardCell1.configureView(isPlaying: isPlaying, volume: volume, rate: rate, currentTime: playItem.playHead, duration: playItem.duration, image:image)
-    }
-    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -94,9 +85,6 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.updateTopCornersRounding(scrollView)
     }
     
-    func update(currentTime: TimeInterval, isPlaying: Bool) {
-        dashboardCell1.update(currentTime: currentTime, isPlaying: isPlaying)
-    }
 }
 
 

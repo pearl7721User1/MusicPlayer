@@ -9,13 +9,17 @@
 import UIKit
 import AVFoundation
 
-class AudioPlayerController {
+class AudioPlayerController: NSObject {
     
     private var audioPlayer: AVAudioPlayer?
     var currentPlayItem: PlayItem?
     private var timer = Timer()
     
-    private var observerArray = [AudioPlayStatusObserver]()
+    // updateAudioPlayerObservableProperties
+    @objc dynamic var currentTime: Double = 0.0
+    @objc dynamic var isPlaying: Bool = false
+    @objc dynamic var volume: Float = 0.0
+    @objc dynamic var rate: Float = 0.0    
     
     func playOrPause(sender: AnyObject) {
         
@@ -27,28 +31,43 @@ class AudioPlayerController {
                 
                 timer.invalidate()
                 
+                /*
                 let currentTime = audioPlayer.currentTime
                 let isPlaying = audioPlayer.isPlaying
                 
                 for observer in self.observerArray {
                     observer.update(currentTime: currentTime, isPlaying: isPlaying)
                 }
+                */
+                if let audioPlayer = self.audioPlayer {
+                    self.updateAudioPlayerProperties(from: audioPlayer)
+                }
                 
-                currentPlayItem.playHead = currentTime
+                self.updateCurrentItemPlayHead()
+                
                 print(currentPlayItem.playHead)
                 
             } else {
                 audioPlayer.play()
                 timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {[unowned self] (timer: Timer) in
                     
+                    // update list:
+                    // currentTime, isPlaying, volume, rate
+                    if let audioPlayer = self.audioPlayer {
+                        self.updateAudioPlayerProperties(from: audioPlayer)
+                    }
+                    
+                    self.updateCurrentItemPlayHead()
+                    
+                    /*
                     let currentTime = audioPlayer.currentTime
                     let isPlaying = audioPlayer.isPlaying
                     
                     for observer in self.observerArray {
                         observer.update(currentTime: currentTime, isPlaying: isPlaying)
                     }
+                    */
                     
-                    currentPlayItem.playHead = currentTime
                 }
                 
                 timer.fire()
@@ -74,11 +93,7 @@ class AudioPlayerController {
     func setCurrentTime(sender: AnyObject, currentTime: TimeInterval) {
         audioPlayer?.currentTime = currentTime
         currentPlayItem?.playHead = currentTime
-        /*
-        for observer in self.observerArray {
-            observer.update(currentTime: currentTime, isPlaying: audioPlayer?.isPlaying)
-        }
- */
+
     }
     
     func setVolume(sender: AnyObject, volume: Float) {
@@ -93,11 +108,11 @@ class AudioPlayerController {
         
         timer.invalidate()
         
+        // init audio player
         guard let fileName = playItem.fileName else {
             print("audio fileName is nil")
             return
         }
-        
         
         do {
             let resourceFilePath = "\(Bundle.main.bundlePath)/\(fileName)"
@@ -107,25 +122,33 @@ class AudioPlayerController {
             return
         }
         
-        currentPlayItem = playItem
         audioPlayer?.currentTime = playItem.playHead
+        currentPlayItem = playItem
+        
+        // update audio player properties of this class
+        if let audioPlayer = self.audioPlayer {
+            self.updateAudioPlayerProperties(from: audioPlayer)
+        }
+        
         self.playOrPause(sender: self)
-        
-        
+
+        // TODO:
         // save what's been newly selected to play in nsuserdefault
         UserDefaults.standard.set(playItem.id, forKey: "CurrentPlayItem")
     }
     
-    func isPlaying() -> Bool {
-        return self.audioPlayer?.isPlaying ?? false
+    func updateCurrentItemPlayHead() {
+        if let playItem = self.currentPlayItem {
+            playItem.playHead = self.currentTime
+        }
     }
     
-    func volume() -> Float {
-        return self.audioPlayer?.volume ?? 0.0
-    }
-    
-    func rate() -> Float {
-        return self.audioPlayer?.rate ?? 0.0
+    private func updateAudioPlayerProperties(from audioPlayer: AVAudioPlayer) {
+        self.currentTime = audioPlayer.currentTime
+        self.isPlaying = audioPlayer.isPlaying
+        self.volume = audioPlayer.volume
+        self.rate = audioPlayer.rate
+        
     }
  
 }

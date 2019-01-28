@@ -38,7 +38,6 @@ class LaunchViewController: UIViewController {
         
         viewController.modalPresentationStyle = .custom
         viewController.transitioningDelegate = self
-        viewController.audioPlayerController = self.audioPlayerController
         
         return viewController
     }()
@@ -59,9 +58,7 @@ class LaunchViewController: UIViewController {
         
         // embed tab bar controller
         initEmbeddedTabBarController(with: self.coreDataStack.allPlayItems(context: self.context))
-        miniPlayBarController = MiniPlayBarController(hostingView: self.view, bottomInset: mainTabBarController.tabBar.bounds.height, viewPresentationDelegate:self, audioPlayerController:self.audioPlayerController)
-        
-        miniPlayBarController.showMiniPlayBar()
+        miniPlayBarController = MiniPlayBarController(hostingView: self.view, bottomInset: mainTabBarController.tabBar.bounds.height, viewPresentationDelegate:self)
         
         // save what's been newly selected to play in nsuserdefault
         let recentlyPlayedItemId = UserDefaults.standard.integer(forKey: "CurrentPlayItem")
@@ -82,7 +79,7 @@ class LaunchViewController: UIViewController {
     
     private func initEmbeddedTabBarController(with playItems: [PlayItem]) {
 
-        self.mainTabBarController = MainTabBarController.newInstance(viewPresentationDelegate: self, audioListViewControllerBottomInset: self.miniPlayBarHeight, audioListPlayItems: playItems)
+        self.mainTabBarController = MainTabBarController.newInstance(viewPresentationDelegate: self, audioPlayerController:self.audioPlayerController, audioListViewControllerBottomInset: self.miniPlayBarHeight, audioListPlayItems: playItems)
         
         // add main tab bar controller
         self.addChildViewController(mainTabBarController)
@@ -106,6 +103,7 @@ extension LaunchViewController: AudioPlayAssociatedViewsPresentationDelegate {
     func triggerMiniPlayBar(sender: AnyObject) {
         
         miniPlayBarController.showMiniPlayBar()
+        miniPlayBarController.setAudioPlayControllerToMiniPlayBar(audioPlayerController: self.audioPlayerController)
         
         /*
         if let currentPlayItem = self.audioPlayerController.currentPlayItem {
@@ -118,11 +116,12 @@ extension LaunchViewController: AudioPlayAssociatedViewsPresentationDelegate {
     
     func triggerAudioPlayerViewController(sender: AnyObject) {
         
+        audioPlayerViewController.audioPlayerController = self.audioPlayerController
+        
         let playerViewSnapshot = audioPlayerViewController.view.snapshotView(afterScreenUpdates: true)
         let miniPlayBarSnapshot = miniPlayBarController.miniPlayBar.snapshotView(afterScreenUpdates: true)
         
         playerPopupAnimationController = MiniPlayPopupAnimationController(playerViewSnapshot: playerViewSnapshot!, miniPlayBarSnapshot: miniPlayBarSnapshot!, miniPlayBarSnapshotStartingFrame: miniPlayBarController.miniPlayBarFrame())
-        
         
         self.present(audioPlayerViewController, animated: true, completion: nil)
         /*

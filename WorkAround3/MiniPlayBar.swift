@@ -25,7 +25,7 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     @IBOutlet weak var imageView: ImageShadeEffectView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var playButton: GHeadTailButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -68,14 +68,10 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
         }
         
         
-        let isPlaying = self.audioPlayerController.isPlaying()
+        let isPlaying = self.audioPlayerController.isPlaying
         
         // TODO: - set play button
-        if isPlaying {
-            playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
-        } else {
-            playButton.setImage(UIImage(named:"play.png")!, for: .normal)
-        }
+        playButton.showIcon(isHead: !isPlaying)
         
     }
     
@@ -97,11 +93,7 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     
     
     func update(currentTime: TimeInterval, isPlaying: Bool) {
-        if isPlaying {
-            playButton.setImage(UIImage(named:"pause.png")!, for: .normal)
-        } else {
-            playButton.setImage(UIImage(named:"play.png")!, for: .normal)
-        }
+        playButton.showIcon(isHead: !isPlaying)
     }
 
     
