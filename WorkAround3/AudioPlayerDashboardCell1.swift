@@ -198,4 +198,22 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     private func reflectRate(rate: Float) {
         
     }
+    
+    private func metricTime(seconds: Int) -> String? {
+        if seconds < 0 {
+            return nil
+        }
+        
+        let remainingSeconds = seconds % 60
+        let minutes = seconds / 60
+        let hours = minutes / 60
+        
+        var theStringResult = String.init(format: "%d:%02d", minutes, remainingSeconds)
+        
+        if hours > 0 {
+            theStringResult = "\(hours):\(theStringResult)"
+        }
+        
+        return theStringResult
+    }
 }

@@ -19,7 +19,10 @@ class AudioPlayerController: NSObject {
     @objc dynamic var currentTime: Double = 0.0
     @objc dynamic var isPlaying: Bool = false
     @objc dynamic var volume: Float = 0.0
-    @objc dynamic var rate: Float = 0.0    
+    @objc dynamic var rate: Float = 0.0
+    
+    let supportedPlayRates = [1, 0.5, 2]
+    
     
     func playOrPause(sender: AnyObject) {
         
@@ -80,6 +83,9 @@ class AudioPlayerController: NSObject {
         
         if let audioPlayer = self.audioPlayer {
             audioPlayer.currentTime = audioPlayer.currentTime - 1
+            
+            self.updateAudioPlayerProperties(from: audioPlayer)
+            self.updateCurrentItemPlayHead()
         }
         
     }
@@ -87,6 +93,9 @@ class AudioPlayerController: NSObject {
     func movePlayHeadForward(sender: AnyObject) {
         if let audioPlayer = self.audioPlayer {
             audioPlayer.currentTime = audioPlayer.currentTime + 1
+            
+            self.updateAudioPlayerProperties(from: audioPlayer)
+            self.updateCurrentItemPlayHead()
         }
     }
     
