@@ -26,7 +26,7 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     @IBOutlet weak var playButton: GHeadTailButton!
     
     @IBOutlet weak var rateButton: UIButton!
-    @IBOutlet weak var volumeSlider: UISlider!
+//    @IBOutlet weak var volumeSlider: UISlider!
     
     var observationForIsPlaying: NSKeyValueObservation?
     var observationForCurrentTime: NSKeyValueObservation?
@@ -102,9 +102,9 @@ class AudioPlayerDashboardCell1: UITableViewCell {
             playButton.showIcon(isHead: !isPlaying)
             
             // set volume slide value
-            volumeSlider.minimumValue = 0
-            volumeSlider.maximumValue = 100
-            volumeSlider.value = volume * 100
+//            volumeSlider.minimumValue = 0
+//            volumeSlider.maximumValue = 100
+//            volumeSlider.value = volume * 100
             
             // set rate button title
             
