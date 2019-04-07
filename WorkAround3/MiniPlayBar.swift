@@ -11,7 +11,7 @@ import AVFoundation
 
 
 @IBDesignable
-class MiniPlayBar: UIView, AudioPlayStatusObserver {
+class MiniPlayBar: UIView {
     
 
     @IBOutlet var contentView: UIView!
@@ -19,8 +19,11 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     var audioPlayerController: AudioPlayerController! {
         didSet {
             configureView()
+            registerObservers()
         }
     }
+    
+    var observationForIsPlaying: NSKeyValueObservation?
     
     @IBOutlet weak var imageView: ImageShadeEffectView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -67,12 +70,6 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
             titleLabel.text = playItem.title
         }
         
-        
-        let isPlaying = self.audioPlayerController.isPlaying
-        
-        // TODO: - set play button
-        playButton.showIcon(isHead: !isPlaying)
-        
     }
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
@@ -92,9 +89,18 @@ class MiniPlayBar: UIView, AudioPlayStatusObserver {
     }
     
     
-    func update(currentTime: TimeInterval, isPlaying: Bool) {
-        playButton.showIcon(isHead: !isPlaying)
+    private func registerObservers() {
+        
+        self.observationForIsPlaying =
+            observe(\.audioPlayerController.isPlaying,
+                    options: [.new], changeHandler:
+                { object, change in
+                    // do something
+                    if let isPlaying = change.newValue {
+                        self.playButton.showIcon(isHead: !isPlaying)
+                    }
+            })
+        
     }
-
     
 }

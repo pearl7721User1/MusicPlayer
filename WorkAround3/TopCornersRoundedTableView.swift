@@ -9,19 +9,11 @@
 import UIKit
 
 class TopCornersRoundedTableView: UITableView {
-
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
         updateTopCornersRounding(self)
-        /*
-        let maskLayer = CAShapeLayer()
-        let path = UIBezierPath(roundedRect:
-            CGRect(origin: CGPoint.zero, size: CGSize(width: self.bounds.width, height: self.bounds.height)),
-                                byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 40.0, height: 40.0))
-        maskLayer.path = path.cgPath
-        self.layer.mask = maskLayer
-        */
     }
     
     func updateTopCornersRounding(_ scrollView: UIScrollView) {

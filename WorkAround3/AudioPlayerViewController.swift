@@ -87,4 +87,12 @@ class AudioPlayerViewController: UIViewController, UITableViewDataSource, UITabl
     
 }
 
-
+extension AudioPlayerViewController {
+    static func newAudioPlayerController() -> AudioPlayerViewController {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AudioPlayerViewController") as! AudioPlayerViewController
+        
+        viewController.modalPresentationStyle = .custom
+        return viewController
+    }
+}

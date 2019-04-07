@@ -22,7 +22,7 @@ class MiniPlayPopupAnimationController: NSObject, UIViewControllerAnimatedTransi
  
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 1.0
+        return 0.3
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

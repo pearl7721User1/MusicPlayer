@@ -34,14 +34,6 @@ class AudioPlayerController: NSObject {
                 
                 timer.invalidate()
                 
-                /*
-                let currentTime = audioPlayer.currentTime
-                let isPlaying = audioPlayer.isPlaying
-                
-                for observer in self.observerArray {
-                    observer.update(currentTime: currentTime, isPlaying: isPlaying)
-                }
-                */
                 if let audioPlayer = self.audioPlayer {
                     self.updateAudioPlayerProperties(from: audioPlayer)
                 }
@@ -61,15 +53,6 @@ class AudioPlayerController: NSObject {
                     }
                     
                     self.updateCurrentItemPlayHead()
-                    
-                    /*
-                    let currentTime = audioPlayer.currentTime
-                    let isPlaying = audioPlayer.isPlaying
-                    
-                    for observer in self.observerArray {
-                        observer.update(currentTime: currentTime, isPlaying: isPlaying)
-                    }
-                    */
                     
                 }
                 

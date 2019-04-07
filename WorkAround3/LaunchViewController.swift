@@ -16,11 +16,6 @@ protocol AudioPlayAssociatedViewsPresentationDelegate {
     func triggerAudioPlayerViewController(sender: AnyObject)
 }
 
-
-protocol AudioPlayStatusObserver {
-    func update(currentTime: TimeInterval, isPlaying: Bool)
-}
-
 class LaunchViewController: UIViewController {
     
     // MARK: - Properties, etc
@@ -30,18 +25,7 @@ class LaunchViewController: UIViewController {
     var style:UIStatusBarStyle = .default
 
     private var playerPopupAnimationController: MiniPlayPopupAnimationController?
-    
-    
-    lazy var audioPlayerViewController: AudioPlayerViewController = {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "AudioPlayerViewController") as! AudioPlayerViewController
-        
-        viewController.modalPresentationStyle = .custom
-        viewController.transitioningDelegate = self
-        
-        return viewController
-    }()
-    
+    private var audioPlayerViewController: AudioPlayerViewController!
     private var miniPlayBarController: MiniPlayBarController!
     private var mainTabBarController: MainTabBarController!
     private let miniPlayBarHeight: CGFloat = 80
@@ -51,29 +35,20 @@ class LaunchViewController: UIViewController {
     var coreDataStack: CoreDataStack!
     var audioPlayerController = AudioPlayerController()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // embed tab bar controller
+        // init view controllers
         initEmbeddedTabBarController(with: self.coreDataStack.allPlayItems(context: self.context))
         miniPlayBarController = MiniPlayBarController(hostingView: self.view, bottomInset: mainTabBarController.tabBar.bounds.height, viewPresentationDelegate:self)
+        audioPlayerViewController = AudioPlayerViewController.newAudioPlayerController()
+        audioPlayerViewController.transitioningDelegate = self
         
-        // save what's been newly selected to play in nsuserdefault
-        let recentlyPlayedItemId = UserDefaults.standard.integer(forKey: "CurrentPlayItem")
-
-        // if available?
-        if let recentlyPlayedItem = self.coreDataStack.playItem(of: recentlyPlayedItemId, context: self.context) {
-            self.audioPlayerController.currentPlayItem = recentlyPlayedItem
-            self.audioPlayerController.setPlayItem(sender: self, playItem: recentlyPlayedItem)
-            
-            if let delegate = self as? AudioPlayAssociatedViewsPresentationDelegate {
-                delegate.triggerMiniPlayBar(sender: self)
-            }
+        // continue most recent play item
+        if let mostRecentPlayItem = self.mostRecentPlayItem(from: self.coreDataStack) {
+            self.play(item: mostRecentPlayItem, with: self.audioPlayerController)
+            self.triggerMiniPlayBar(sender: self)
         }
-        
-        
     }
     
     
@@ -94,24 +69,25 @@ class LaunchViewController: UIViewController {
         
     }
     
+    private func mostRecentPlayItem(from coreDataStack: CoreDataStack) -> PlayItem? {
+        
+        let recentlyPlayedItemId = UserDefaults.standard.integer(forKey: "CurrentPlayItem")
+        
+        return coreDataStack.playItem(of: recentlyPlayedItemId, context: self.context)
+    }
+    
+    private func play(item: PlayItem, with audioPlayerController: AudioPlayerController) {
+        audioPlayerController.currentPlayItem = item
+        audioPlayerController.setPlayItem(sender: self, playItem: item)
+    }
     
 }
 
 extension LaunchViewController: AudioPlayAssociatedViewsPresentationDelegate {
     
-    
     func triggerMiniPlayBar(sender: AnyObject) {
-        
         miniPlayBarController.showMiniPlayBar()
         miniPlayBarController.setAudioPlayControllerToMiniPlayBar(audioPlayerController: self.audioPlayerController)
-        
-        /*
-        if let currentPlayItem = self.audioPlayerController.currentPlayItem {
-            
-            miniPlayBarController.configureMiniPlayBar(with: currentPlayItem, isPlaying: self.audioPlayerController.audioPlayer.isPlaying)
-        }
-        */
-        
     }
     
     func triggerAudioPlayerViewController(sender: AnyObject) {
@@ -124,13 +100,6 @@ extension LaunchViewController: AudioPlayAssociatedViewsPresentationDelegate {
         playerPopupAnimationController = MiniPlayPopupAnimationController(playerViewSnapshot: playerViewSnapshot!, miniPlayBarSnapshot: miniPlayBarSnapshot!, miniPlayBarSnapshotStartingFrame: miniPlayBarController.miniPlayBarFrame())
         
         self.present(audioPlayerViewController, animated: true, completion: nil)
-        /*
-        if let currentPlayItem = self.audioPlayerController.currentPlayItem {
-            
-            audioPlayerViewController.configureView(playItem: playItem, isPlaying: audioPlayer.isPlaying, volume: audioPlayer.volume, rate: audioPlayer.rate)
-            
-        }
-        */
     }
 }
 

@@ -9,9 +9,13 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 class AudioPlayerDashboardCell1: UITableViewCell {
 
+    @IBOutlet weak var volumeSliderView: MPVolumeView!
+    @IBOutlet weak var audioRouteButton: MPVolumeView!
+    
     @objc var audioPlayerController: AudioPlayerController! {
         didSet {
             configureView()
@@ -30,8 +34,16 @@ class AudioPlayerDashboardCell1: UITableViewCell {
     
     var observationForIsPlaying: NSKeyValueObservation?
     var observationForCurrentTime: NSKeyValueObservation?
-    var observationForVolume: NSKeyValueObservation?
     var observationForRate: NSKeyValueObservation?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        volumeSliderView.showsRouteButton = false
+        audioRouteButton.showsVolumeSlider = false
+        
+    }
+ 
     
     private func registerObservers() {
         
@@ -52,16 +64,6 @@ class AudioPlayerDashboardCell1: UITableViewCell {
                     if let isPlaying = change.newValue {
                         self.reflectIsPlaying(isPlaying: isPlaying)
                     }
-        })
-        
-        self.observationForVolume = observe(\.audioPlayerController.volume,
-                                                 options: [.new], changeHandler:
-            { object, change in
-                // do something
-                if let volume = change.newValue {
-                    self.reflectVolume(volume: volume)
-                }
-                
         })
         
         self.observationForRate = observe(\.audioPlayerController.rate,
@@ -189,10 +191,6 @@ class AudioPlayerDashboardCell1: UITableViewCell {
         
         // set image
         playItemImageView.isScaledUp = isPlaying
-    }
-    
-    private func reflectVolume(volume: Float) {
-        
     }
     
     private func reflectRate(rate: Float) {
