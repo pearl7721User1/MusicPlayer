@@ -38,36 +38,32 @@ class GHeadTailButton: UIButton {
         bglayer.backgroundColor = UIColor(white: 0.7, alpha: 1.0).cgColor
         bglayer.opacity = 0
         
-        self.addTarget(self, action: #selector(touchDownAction), for: .touchDown)
-        self.addTarget(self, action: #selector(touchUpInsideAction), for: .touchUpInside)
-        self.addTarget(self, action: #selector(touchDragInside), for: .touchDragInside)
-        self.addTarget(self, action: #selector(touchDragOutside), for: .touchDragOutside)
+        self.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
+        self.addTarget(self, action: #selector(buttonUnPressed), for: .touchUpInside)
+        self.addTarget(self, action: #selector(buttonPressed), for: .touchDragInside)
+        self.addTarget(self, action: #selector(buttonUnPressed), for: .touchDragOutside)
+        self.addTarget(self, action: #selector(buttonUnPressed), for: .touchCancel)
     }
 
-    @objc func touchDownAction() {
+    @objc func buttonPressed() {
         self.transitionAnimation(isTouchingDown: true)
-//        print("-------touchDown")
     }
     
-    @objc func touchDragInside(_ sender: GHeadTailButton) {
-//        print("touchDragOutside")
-        sender.transitionAnimation(isTouchingDown: true)
-    }
-    
-    @objc func touchDragOutside(_ sender: GHeadTailButton) {
-//        print("touchDragOutside")
-        sender.transitionAnimation(isTouchingDown: false)
-    }
-    
-    @objc func touchUpInsideAction() {
+    @objc func buttonUnPressed() {
         self.transitionAnimation(isTouchingDown: false)
-//        print("-------touchUpInside")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        bglayer.frame = self.bounds
-        bglayer.cornerRadius = self.bounds.size.width / 2
+        
+        var bounds = self.bounds
+        bounds.size.width = self.bounds.width * 1.5
+        bounds.size.height = self.bounds.height * 1.5
+        bounds.origin.x = -self.bounds.width * 0.5 / 2.0
+        bounds.origin.y = -self.bounds.height * 0.5 / 2.0
+        
+        bglayer.frame = bounds //self.bounds
+        bglayer.cornerRadius = bounds.size.width / 2 //self.bounds.size.width / 2
         bgImgLayer.frame = self.bounds
     }
     

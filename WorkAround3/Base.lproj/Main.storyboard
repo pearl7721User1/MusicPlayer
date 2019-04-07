@@ -204,7 +204,7 @@ jlkjl</string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ckj-VU-mKA" customClass="TopCornersRoundedTableView" customModule="WorkAround3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="32" width="375" height="635"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="X5P-qg-vcr" id="gxM-u5-Y2q"/>
@@ -245,26 +245,26 @@ jlkjl</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6k1-za-ub3" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="G0b-AM-ZMi" userLabel="TableViewHeader">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="575" id="Hwu-bH-bGc" customClass="AudioPlayerDashboardCell1" customModule="WorkAround3" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="575"/>
                     <autoresizingMask key="autoresizingMask"/>
-                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hwu-bH-bGc" id="La5-64-eMU">
+                    <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hwu-bH-bGc" id="La5-64-eMU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTH-59-GCL" customClass="ImageShadeEffectView" customModule="WorkAround3" customModuleProvider="target">
-                                <rect key="frame" x="70" y="35" width="235" height="235"/>
+                                <rect key="frame" x="50" y="15" width="275" height="275"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yTH-59-GCL" secondAttribute="height" multiplier="1:1" id="t7W-nG-JAB"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="scaleAnimationFactor">
-                                        <real key="value" value="0.90000000000000002"/>
+                                        <real key="value" value="0.80000000000000004"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -289,10 +289,10 @@ jlkjl</string>
                                 <state key="normal" title="more"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrP-6C-eSd" customClass="GHeadTailButton" customModule="WorkAround3" customModuleProvider="target">
-                                <rect key="frame" x="157.5" y="409" width="60" height="60"/>
+                                <rect key="frame" x="167.5" y="429" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="PS6-u1-MtX"/>
-                                    <constraint firstAttribute="height" constant="60" id="cjh-tV-cEZ"/>
+                                    <constraint firstAttribute="width" constant="40" id="PS6-u1-MtX"/>
+                                    <constraint firstAttribute="height" constant="40" id="cjh-tV-cEZ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="headButtonImage" value="play.png"/>
@@ -303,7 +303,7 @@ jlkjl</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS3-xf-mxw" customClass="GHeadTailButton" customModule="WorkAround3" customModuleProvider="target">
-                                <rect key="frame" x="78" y="419" width="40" height="40"/>
+                                <rect key="frame" x="88" y="429" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="AX5-Kk-LQH"/>
                                     <constraint firstAttribute="width" constant="40" id="nkx-2d-wNC"/>
@@ -317,7 +317,7 @@ jlkjl</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZM5-14-zeI" customClass="GHeadTailButton" customModule="WorkAround3" customModuleProvider="target">
-                                <rect key="frame" x="257" y="419" width="40" height="40"/>
+                                <rect key="frame" x="247" y="429" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="gaF-Ak-hLD"/>
                                     <constraint firstAttribute="height" constant="40" id="rnw-tI-JYg"/>
@@ -331,29 +331,29 @@ jlkjl</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snap Classic - Tin Man" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfq-ar-Xnd">
-                                <rect key="frame" x="99.5" y="340" width="176" height="21"/>
+                                <rect key="frame" x="99.5" y="360" width="176" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-ER-yTp">
-                                <rect key="frame" x="85" y="364" width="205" height="30"/>
+                                <rect key="frame" x="85" y="384" width="205" height="30"/>
                                 <state key="normal" title="Snap Judgment - 1 June 2018"/>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-jH-Obq">
-                                <rect key="frame" x="28" y="290" width="319" height="31"/>
+                                <rect key="frame" x="28" y="310" width="319" height="31"/>
                                 <connections>
                                     <action selector="playHeadValueChanged:" destination="Hwu-bH-bGc" eventType="valueChanged" id="ZqB-0a-8tv"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2Z-0U-Mwt">
-                                <rect key="frame" x="30" y="320" width="42" height="21"/>
+                                <rect key="frame" x="30" y="340" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpp-Lf-xfb">
-                                <rect key="frame" x="303" y="320" width="42" height="21"/>
+                                <rect key="frame" x="303" y="340" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -391,13 +391,13 @@ jlkjl</string>
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="yTH-59-GCL" secondAttribute="trailing" constant="70" id="77R-Gk-H1O"/>
+                            <constraint firstAttribute="trailing" secondItem="yTH-59-GCL" secondAttribute="trailing" constant="50" id="77R-Gk-H1O"/>
                             <constraint firstAttribute="trailing" secondItem="mTx-iB-uUh" secondAttribute="trailing" constant="20" id="AEx-0C-4eI"/>
                             <constraint firstItem="OXk-ks-GPp" firstAttribute="centerY" secondItem="2zs-oV-Kzh" secondAttribute="centerY" id="GtZ-St-Kv5"/>
                             <constraint firstItem="bpp-Lf-xfb" firstAttribute="top" secondItem="lQ0-jH-Obq" secondAttribute="bottom" id="Ham-8s-7Qw"/>
                             <constraint firstItem="lQ0-jH-Obq" firstAttribute="leading" secondItem="La5-64-eMU" secondAttribute="leading" constant="30" id="Jmf-We-v5J"/>
                             <constraint firstAttribute="bottom" secondItem="kpT-6W-k8f" secondAttribute="bottom" constant="25.5" id="KEY-y5-Fjd"/>
-                            <constraint firstItem="yTH-59-GCL" firstAttribute="leading" secondItem="La5-64-eMU" secondAttribute="leading" constant="70" id="Ldy-lg-QqK"/>
+                            <constraint firstItem="yTH-59-GCL" firstAttribute="leading" secondItem="La5-64-eMU" secondAttribute="leading" constant="50" id="Ldy-lg-QqK"/>
                             <constraint firstItem="wfq-ar-Xnd" firstAttribute="centerX" secondItem="La5-64-eMU" secondAttribute="centerX" id="MVi-tC-WbE"/>
                             <constraint firstItem="UrP-6C-eSd" firstAttribute="top" secondItem="fSO-ER-yTp" secondAttribute="bottom" constant="15" id="Nn0-eP-YfH"/>
                             <constraint firstItem="UrP-6C-eSd" firstAttribute="leading" secondItem="JS3-xf-mxw" secondAttribute="trailing" constant="39.5" id="Pfo-Hd-XN4"/>
