@@ -10,6 +10,11 @@ I wanted to program the same interface with some sample audio files.
 On one hand, I wanted to discover nuances of this interface in terms of user experience and implement it on my own.
 Given the fact that User Interface factors in designing an app, I wanted to tackle architectural issues to study efficient and scalable design so that it is easy to maintain.
 
+## Screenshots as in Apr.7.2019
+<p align="center">
+<img src="https://user-images.githubusercontent.com/18760280/55679315-4ada9d00-5944-11e9-95ae-5264386f763a.gif">
+</p>
+
 ## Some representative requirements
 (1) make audio track play from the last play time
 (2) button push, release makes you feel like you are pushing a physical real world button
